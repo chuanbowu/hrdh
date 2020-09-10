@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.order.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.order.Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="sensation_consignee_phone" property="sensationConsigneePhone" jdbcType="VARCHAR" />
+    <result column="sensation_consignee_name" property="sensationConsigneeName" jdbcType="VARCHAR" />
+    <result column="sensation_consignee_address" property="sensationConsigneeAddress" jdbcType="VARCHAR" />
+    <result column="payment_type" property="paymentType" jdbcType="INTEGER" />
+    <result column="payment_deposit" property="paymentDeposit" jdbcType="INTEGER" />
+    <result column="deposit_price" property="depositPrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="business_express_id" property="businessExpressId" jdbcType="BIGINT" />
+    <result column="business_num" property="businessNum" jdbcType="VARCHAR" />
+    <result column="business_explain" property="businessExplain" jdbcType="VARCHAR" />
+    <result column="business_consignee_phone" property="businessConsigneePhone" jdbcType="VARCHAR" />
+    <result column="business_consignee_name" property="businessConsigneeName" jdbcType="VARCHAR" />
+    <result column="business_consignee_address" property="businessConsigneeAddress" jdbcType="VARCHAR" />
+    <result column="sensation_express_id" property="sensationExpressId" jdbcType="BIGINT" />
+    <result column="sensation_num" property="sensationNum" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="business_deliver_date" property="businessDeliverDate" jdbcType="TIMESTAMP" />
+    <result column="sensation_receiving_date" property="sensationReceivingDate" jdbcType="TIMESTAMP" />
+    <result column="sensation_send_date" property="sensationSendDate" jdbcType="TIMESTAMP" />
+    <result column="business_collect_date" property="businessCollectDate" jdbcType="TIMESTAMP" />
+    <result column="deposit_return_date" property="depositReturnDate" jdbcType="TIMESTAMP" />
+    <result column="promotion_link" property="promotionLink" jdbcType="VARCHAR" />
+    <result column="coupon_share_url" property="couponShareUrl" jdbcType="VARCHAR" />
+    <result column="refuse_content" property="refuseContent" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sensation_id, goods_id, sensation_consignee_phone, sensation_consignee_name,
+    sensation_consignee_address, payment_type, payment_deposit, deposit_price, status,
+    business_express_id, business_num, business_explain, business_consignee_phone, business_consignee_name,
+    business_consignee_address, sensation_express_id, sensation_num, create_date, business_deliver_date,
+    sensation_receiving_date, sensation_send_date, business_collect_date, deposit_return_date,
+    promotion_link, coupon_share_url, refuse_content, check_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from o_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from o_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.order.Order" useGeneratedKeys="true" keyProperty="id" >
+    insert into o_order (sensation_id, goods_id, sensation_consignee_phone,
+    sensation_consignee_name, sensation_consignee_address,
+    payment_type, payment_deposit, deposit_price,
+    status, business_express_id, business_num,
+    business_explain, business_consignee_phone,
+    business_consignee_name, business_consignee_address,
+    sensation_express_id, sensation_num, create_date,
+    business_deliver_date, sensation_receiving_date,
+    sensation_send_date, business_collect_date,
+    deposit_return_date, promotion_link, coupon_share_url,
+    refuse_content, check_date)
+    values (#{sensationId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{sensationConsigneePhone,jdbcType=VARCHAR},
+    #{sensationConsigneeName,jdbcType=VARCHAR}, #{sensationConsigneeAddress,jdbcType=VARCHAR},
+    #{paymentType,jdbcType=INTEGER}, #{paymentDeposit,jdbcType=INTEGER}, #{depositPrice,jdbcType=DOUBLE},
+    #{status,jdbcType=INTEGER}, #{businessExpressId,jdbcType=BIGINT}, #{businessNum,jdbcType=VARCHAR},
+    #{businessExplain,jdbcType=VARCHAR}, #{businessConsigneePhone,jdbcType=VARCHAR},
+    #{businessConsigneeName,jdbcType=VARCHAR}, #{businessConsigneeAddress,jdbcType=VARCHAR},
+    #{sensationExpressId,jdbcType=BIGINT}, #{sensationNum,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+    #{businessDeliverDate,jdbcType=TIMESTAMP}, #{sensationReceivingDate,jdbcType=TIMESTAMP},
+    #{sensationSendDate,jdbcType=TIMESTAMP}, #{businessCollectDate,jdbcType=TIMESTAMP},
+    #{depositReturnDate,jdbcType=TIMESTAMP}, #{promotionLink,jdbcType=VARCHAR}, #{couponShareUrl,jdbcType=VARCHAR},
+    #{refuseContent,jdbcType=VARCHAR}, #{checkDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.order.Order" useGeneratedKeys="true" keyProperty="id" >
+    insert into o_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        sensation_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="sensationConsigneePhone != null" >
+        sensation_consignee_phone,
+      </if>
+      <if test="sensationConsigneeName != null" >
+        sensation_consignee_name,
+      </if>
+      <if test="sensationConsigneeAddress != null" >
+        sensation_consignee_address,
+      </if>
+      <if test="paymentType != null" >
+        payment_type,
+      </if>
+      <if test="paymentDeposit != null" >
+        payment_deposit,
+      </if>
+      <if test="depositPrice != null" >
+        deposit_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="businessExpressId != null" >
+        business_express_id,
+      </if>
+      <if test="businessNum != null" >
+        business_num,
+      </if>
+      <if test="businessExplain != null" >
+        business_explain,
+      </if>
+      <if test="businessConsigneePhone != null" >
+        business_consignee_phone,
+      </if>
+      <if test="businessConsigneeName != null" >
+        business_consignee_name,
+      </if>
+      <if test="businessConsigneeAddress != null" >
+        business_consignee_address,
+      </if>
+      <if test="sensationExpressId != null" >
+        sensation_express_id,
+      </if>
+      <if test="sensationNum != null" >
+        sensation_num,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="businessDeliverDate != null" >
+        business_deliver_date,
+      </if>
+      <if test="sensationReceivingDate != null" >
+        sensation_receiving_date,
+      </if>
+      <if test="sensationSendDate != null" >
+        sensation_send_date,
+      </if>
+      <if test="businessCollectDate != null" >
+        business_collect_date,
+      </if>
+      <if test="depositReturnDate != null" >
+        deposit_return_date,
+      </if>
+      <if test="promotionLink != null" >
+        promotion_link,
+      </if>
+      <if test="couponShareUrl != null" >
+        coupon_share_url,
+      </if>
+      <if test="refuseContent != null" >
+        refuse_content,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="sensationConsigneePhone != null" >
+        #{sensationConsigneePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationConsigneeName != null" >
+        #{sensationConsigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationConsigneeAddress != null" >
+        #{sensationConsigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="paymentDeposit != null" >
+        #{paymentDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="depositPrice != null" >
+        #{depositPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="businessExpressId != null" >
+        #{businessExpressId,jdbcType=BIGINT},
+      </if>
+      <if test="businessNum != null" >
+        #{businessNum,jdbcType=VARCHAR},
+      </if>
+      <if test="businessExplain != null" >
+        #{businessExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="businessConsigneePhone != null" >
+        #{businessConsigneePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="businessConsigneeName != null" >
+        #{businessConsigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessConsigneeAddress != null" >
+        #{businessConsigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationExpressId != null" >
+        #{sensationExpressId,jdbcType=BIGINT},
+      </if>
+      <if test="sensationNum != null" >
+        #{sensationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessDeliverDate != null" >
+        #{businessDeliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sensationReceivingDate != null" >
+        #{sensationReceivingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sensationSendDate != null" >
+        #{sensationSendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessCollectDate != null" >
+        #{businessCollectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depositReturnDate != null" >
+        #{depositReturnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionLink != null" >
+        #{promotionLink,jdbcType=VARCHAR},
+      </if>
+      <if test="couponShareUrl != null" >
+        #{couponShareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseContent != null" >
+        #{refuseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.order.Order" >
+    update o_order
+    <set >
+      <if test="sensationId != null" >
+        sensation_id = #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="sensationConsigneePhone != null" >
+        sensation_consignee_phone = #{sensationConsigneePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationConsigneeName != null" >
+        sensation_consignee_name = #{sensationConsigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationConsigneeAddress != null" >
+        sensation_consignee_address = #{sensationConsigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null" >
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="paymentDeposit != null" >
+        payment_deposit = #{paymentDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="depositPrice != null" >
+        deposit_price = #{depositPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="businessExpressId != null" >
+        business_express_id = #{businessExpressId,jdbcType=BIGINT},
+      </if>
+      <if test="businessNum != null" >
+        business_num = #{businessNum,jdbcType=VARCHAR},
+      </if>
+      <if test="businessExplain != null" >
+        business_explain = #{businessExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="businessConsigneePhone != null" >
+        business_consignee_phone = #{businessConsigneePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="businessConsigneeName != null" >
+        business_consignee_name = #{businessConsigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessConsigneeAddress != null" >
+        business_consignee_address = #{businessConsigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationExpressId != null" >
+        sensation_express_id = #{sensationExpressId,jdbcType=BIGINT},
+      </if>
+      <if test="sensationNum != null" >
+        sensation_num = #{sensationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessDeliverDate != null" >
+        business_deliver_date = #{businessDeliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sensationReceivingDate != null" >
+        sensation_receiving_date = #{sensationReceivingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sensationSendDate != null" >
+        sensation_send_date = #{sensationSendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessCollectDate != null" >
+        business_collect_date = #{businessCollectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depositReturnDate != null" >
+        deposit_return_date = #{depositReturnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionLink != null" >
+        promotion_link = #{promotionLink,jdbcType=VARCHAR},
+      </if>
+      <if test="couponShareUrl != null" >
+        coupon_share_url = #{couponShareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseContent != null" >
+        refuse_content = #{refuseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.order.Order" >
+    update o_order
+    set sensation_id = #{sensationId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      sensation_consignee_phone = #{sensationConsigneePhone,jdbcType=VARCHAR},
+      sensation_consignee_name = #{sensationConsigneeName,jdbcType=VARCHAR},
+      sensation_consignee_address = #{sensationConsigneeAddress,jdbcType=VARCHAR},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      payment_deposit = #{paymentDeposit,jdbcType=INTEGER},
+      deposit_price = #{depositPrice,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      business_express_id = #{businessExpressId,jdbcType=BIGINT},
+      business_num = #{businessNum,jdbcType=VARCHAR},
+      business_explain = #{businessExplain,jdbcType=VARCHAR},
+      business_consignee_phone = #{businessConsigneePhone,jdbcType=VARCHAR},
+      business_consignee_name = #{businessConsigneeName,jdbcType=VARCHAR},
+      business_consignee_address = #{businessConsigneeAddress,jdbcType=VARCHAR},
+      sensation_express_id = #{sensationExpressId,jdbcType=BIGINT},
+      sensation_num = #{sensationNum,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      business_deliver_date = #{businessDeliverDate,jdbcType=TIMESTAMP},
+      sensation_receiving_date = #{sensationReceivingDate,jdbcType=TIMESTAMP},
+      sensation_send_date = #{sensationSendDate,jdbcType=TIMESTAMP},
+      business_collect_date = #{businessCollectDate,jdbcType=TIMESTAMP},
+      deposit_return_date = #{depositReturnDate,jdbcType=TIMESTAMP},
+      promotion_link = #{promotionLink,jdbcType=VARCHAR},
+      coupon_share_url = #{couponShareUrl,jdbcType=VARCHAR},
+      refuse_content = #{refuseContent,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.order.OrderVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="sensation_consignee_phone" property="sensationConsigneePhone" jdbcType="VARCHAR" />
+    <result column="sensation_consignee_name" property="sensationConsigneeName" jdbcType="VARCHAR" />
+    <result column="sensation_consignee_address" property="sensationConsigneeAddress" jdbcType="VARCHAR" />
+    <result column="payment_type" property="paymentType" jdbcType="INTEGER" />
+    <result column="payment_deposit" property="paymentDeposit" jdbcType="INTEGER" />
+    <result column="deposit_price" property="depositPrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="business_express_id" property="businessExpressId" jdbcType="BIGINT" />
+    <result column="business_num" property="businessNum" jdbcType="VARCHAR" />
+    <result column="business_explain" property="businessExplain" jdbcType="VARCHAR" />
+    <result column="business_consignee_phone" property="businessConsigneePhone" jdbcType="VARCHAR" />
+    <result column="business_consignee_name" property="businessConsigneeName" jdbcType="VARCHAR" />
+    <result column="business_consignee_address" property="businessConsigneeAddress" jdbcType="VARCHAR" />
+    <result column="sensation_express_id" property="sensationExpressId" jdbcType="BIGINT" />
+    <result column="sensation_num" property="sensationNum" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="business_deliver_date" property="businessDeliverDate" jdbcType="TIMESTAMP" />
+    <result column="sensation_receiving_date" property="sensationReceivingDate" jdbcType="TIMESTAMP" />
+    <result column="sensation_send_date" property="sensationSendDate" jdbcType="TIMESTAMP" />
+    <result column="business_collect_date" property="businessCollectDate" jdbcType="TIMESTAMP" />
+    <result column="deposit_return_date" property="depositReturnDate" jdbcType="TIMESTAMP" />
+    <result column="promotion_link" property="promotionLink" jdbcType="VARCHAR" />
+    <result column="coupon_share_url" property="couponShareUrl" jdbcType="VARCHAR" />
+    <result column="refuse_content" property="refuseContent" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+
+    <result column="business_title" property="businessTitle" jdbcType="VARCHAR" />
+    <result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
+    <result column="coupon_after_price" property="couponAfterPrice" jdbcType="DOUBLE" />
+    <result column="commission_price" property="commissionPrice" jdbcType="DOUBLE" />
+    <result column="proportion" property="proportion" jdbcType="INTEGER" />
+    <result column="business_express_name" property="businessExpressName" jdbcType="VARCHAR" />
+    <result column="sensation_express_name" property="sensationExpressName" jdbcType="VARCHAR" />
+    <result column="extension_num" property="extensionNum" jdbcType="INTEGER" />
+    <result column="profit_price" property="profitPrice" jdbcType="DOUBLE" />
+
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="followers_num" property="followersNum" jdbcType="INTEGER" />
+
+    <result column="business_phone" property="businessPhone" jdbcType="VARCHAR" />
+    <result column="business_nick_name" property="businessNickName" jdbcType="VARCHAR" />
+    <result column="business_head_pic" property="businessHeadPic" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findOrderVmListBySensationId" resultMap="BaseResultMapVm" >
+    select
+    o.id, o.sensation_id, o.goods_id, o.sensation_consignee_name, o.sensation_consignee_address,
+    o.payment_type, o.payment_deposit, o.deposit_price, o.status, o.business_express_id, o.business_num,
+    o.business_explain, o.business_consignee_name, o.business_consignee_address, o.sensation_express_id,
+    o.sensation_num, o.create_date, o.business_deliver_date, o.sensation_receiving_date, o.sensation_send_date,
+    o.business_collect_date, o.deposit_return_date, o.promotion_link, o.coupon_share_url, o.check_date,
+    cg.business_title, cg.main_pic, cg.coupon_after_price, cg.commission_price, cg.proportion
+    from o_order o
+    left join b_commission_goods cg on cg.id = o.goods_id
+    where o.sensation_id = #{sensationId,jdbcType=BIGINT}
+    ORDER BY o.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getOrderVmNumBySensationId" resultType="java.lang.Integer">
+    select
+    count(id)
+    from o_order
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+  </select>
+
+  <select id="getOrderInfo" resultMap="BaseResultMapVm" >
+    select
+    o.id, o.sensation_id, o.goods_id, o.sensation_consignee_phone, o.sensation_consignee_name, o.sensation_consignee_address,
+    o.payment_type, o.payment_deposit, o.deposit_price, o.status, o.business_express_id, o.business_num,
+    o.business_explain, o.business_consignee_phone, o.business_consignee_name, o.business_consignee_address, o.sensation_express_id,
+    o.sensation_num, o.create_date, o.business_deliver_date, o.sensation_receiving_date, o.sensation_send_date,
+    o.business_collect_date, o.deposit_return_date, o.promotion_link, o.coupon_share_url, o.refuse_content, o.check_date,
+    cg.business_title, cg.main_pic, cg.coupon_after_price, cg.commission_price, cg.proportion,
+    ex.express_name as business_express_name, ep.express_name as sensation_express_name,
+    (select count(id) from s_sensation_income where sensation_id = o.sensation_id and goods_id = o.goods_id) as extension_num,
+    (select sum(if(type = 1 or type = 2,commission_price, 0) - if(type = 3,commission_price, 0))
+    from s_sensation_income where sensation_id = o.sensation_id and goods_id = o.goods_id) as profit_price
+    from o_order o
+    left join b_commission_goods cg on cg.id = o.goods_id
+    left join c_express ex on ex.id = o.business_express_id
+    left join c_express ep on ep.id = o.sensation_express_id
+    where o.id = #{orderId,jdbcType=BIGINT}
+  </select>
+
+  <select id="getOrderNumSensationIdOrGoodsId" resultType="java.lang.Integer">
+    select
+    count(id)
+    from o_order
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+     and goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+
+  <select id="findOrderVmListByBusinessId" resultMap="BaseResultMapVm" >
+    select
+    o.id, o.sensation_id, o.goods_id, o.sensation_consignee_phone, o.sensation_consignee_name, o.sensation_consignee_address,
+    o.payment_type, o.payment_deposit, o.deposit_price, o.status, o.business_express_id, o.business_num,
+    o.business_explain, o.business_consignee_phone,  o.business_consignee_name, o.business_consignee_address, o.sensation_express_id,
+    o.sensation_num, o.create_date, o.business_deliver_date, o.sensation_receiving_date, o.sensation_send_date,
+    o.business_collect_date, o.deposit_return_date, o.promotion_link, o.coupon_share_url, o.refuse_content, o.check_date,
+    cg.business_title, cg.main_pic, cg.coupon_after_price, cg.commission_price, cg.proportion,
+    ex.express_name as business_express_name, ep.express_name as sensation_express_name,
+    sg.phone, sg.nick_name, sg.head_pic, sg.followers_num
+    from o_order o
+    left join b_commission_goods cg on cg.id = o.goods_id
+    left join s_sensation sg on sg.id = o.sensation_id
+    left join c_express ex on ex.id = o.business_express_id
+    left join c_express ep on ep.id = o.sensation_express_id
+    where cg.business_id = #{businessId,jdbcType=BIGINT}
+    <if test="status != null" >
+      and o.status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(cg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+    ORDER BY o.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getOrderVmNumByBusinessId" resultType="java.lang.Integer">
+    select
+    count(o.id)
+    from o_order o
+    left join b_commission_goods cg on cg.id = o.goods_id
+    where cg.business_id = #{businessId,jdbcType=BIGINT}
+    <if test="status != null" >
+      and o.status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(cg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <select id="findOrderVmList" resultMap="BaseResultMapVm" >
+    select
+    o.id, o.sensation_id, o.goods_id, o.sensation_consignee_name, o.sensation_consignee_address,
+    o.payment_type, o.payment_deposit, o.deposit_price, o.status, o.business_express_id, o.business_num,
+    o.business_explain, o.business_consignee_name, o.business_consignee_address, o.sensation_express_id,
+    o.sensation_num, o.create_date, o.business_deliver_date, o.sensation_receiving_date, o.sensation_send_date,
+    o.business_collect_date, o.deposit_return_date, o.promotion_link, o.coupon_share_url, o.refuse_content,
+    cg.business_title, cg.main_pic, cg.coupon_after_price, cg.commission_price, cg.proportion,
+    ex.express_name as business_express_name, ep.express_name as sensation_express_name,
+    sg.phone, sg.nick_name, sg.head_pic, sg.followers_num,
+    b.phone as business_phone, b.nick_name as business_nick_name, b.head_pic as business_head_pic
+    from o_order o
+    left join b_commission_goods cg on cg.id = o.goods_id
+    left join b_business b on b.id = cg.business_id
+    left join s_sensation sg on sg.id = o.sensation_id
+    left join c_express ex on ex.id = o.business_express_id
+    left join c_express ep on ep.id = o.sensation_express_id
+    where 1=1
+    <if test="status != null" >
+      and o.status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(cg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+    ORDER BY o.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getOrderVmNum" resultType="java.lang.Integer">
+    select
+    count(o.id)
+    from o_order o
+    left join b_commission_goods cg on cg.id = o.goods_id
+    where 1=1
+    <if test="status != null" >
+      and o.status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(cg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+  </select>
+</mapper>

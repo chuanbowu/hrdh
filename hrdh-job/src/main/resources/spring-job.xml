@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:context="http://www.springframework.org/schema/context"
+           xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+           xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+            xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        http://code.alibabatech.com/schema/dubbo
+                        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+                        ">
+
+    <dubbo:application name="hrdh-job-consumer"/>
+
+    <dubbo:registry protocol="zookeeper" address="${regCenter.serverList}"/>
+
+    <!-- 平台配置service -->
+    <dubbo:reference id="hrdhCacheService" protocol="dubbo"
+                     version="1.0.0" init="true" check="true" retries="0" timeout="30000" cluster="failfast"
+                     interface="com.flym.hrdh.api.service.common.IHrdhCacheService"/>
+
+    <!-- 红人收入明细service -->
+    <dubbo:reference id="sensationIncomeService" protocol="dubbo"
+                     version="1.0.0" init="true" check="true" retries="0" timeout="30000" cluster="failfast"
+                     interface="com.flym.hrdh.api.service.sensation.ISensationIncomeService"/>
+
+    <!-- 红人管理service -->
+    <dubbo:reference id="sensationService" protocol="dubbo"
+                     version="1.0.0" init="true" check="true" retries="0" timeout="30000" cluster="failfast"
+                     interface="com.flym.hrdh.api.service.sensation.ISensationService"/>
+
+    <!-- 佣金商品service -->
+    <dubbo:reference id="commissionGoodsService" protocol="dubbo"
+                     version="1.0.0" init="true" check="true" retries="0" timeout="30000" cluster="failfast"
+                     interface="com.flym.hrdh.api.service.business.ICommissionGoodsService"/>
+
+    <!-- 红人账户明细service -->
+    <dubbo:reference id="sensationAccountInfoService" protocol="dubbo"
+                     version="1.0.0" init="true" check="true" retries="0" timeout="30000" cluster="failfast"
+                     interface="com.flym.hrdh.api.service.sensation.ISensationAccountInfoService"/>
+
+    <reg:zookeeper id="regCenter" server-lists="${regCenter.serverList}" namespace="${regCenter.namespace}" base-sleep-time-milliseconds="1000" max-sleep-time-milliseconds="3000" max-retries="3" />
+
+    <!-- 配置作业：获取订单数据处理 -->
+    <job:simple id="orderHandleJob"
+                class="com.flym.hrdh.ejob.OrderHandleJob"
+                registry-center-ref="regCenter"
+                cron="${orderHandleJob.cron}"
+                sharding-total-count="${orderHandleJob.shardingTotalCount}"
+                sharding-item-parameters="${orderHandleJob.shardingItemParameters}"
+                misfire="${orderHandleJob.misfire}"
+                overwrite="true" />
+
+    <!-- 配置作业：获取订单数据处理 -->
+    <job:simple id="orderSettlementJob"
+                class="com.flym.hrdh.ejob.OrderSettlementJob"
+                registry-center-ref="regCenter"
+                cron="${orderSettlementJob.cron}"
+                sharding-total-count="${orderSettlementJob.shardingTotalCount}"
+                sharding-item-parameters="${orderSettlementJob.shardingItemParameters}"
+                misfire="${orderSettlementJob.misfire}"
+                overwrite="true" />
+
+    <!-- 配置作业：维权退款订单处理 -->
+    <job:simple id="orderRelationRefundJob"
+                class="com.flym.hrdh.ejob.OrderRelationRefundJob"
+                registry-center-ref="regCenter"
+                cron="${orderRelationRefundJob.cron}"
+                sharding-total-count="${orderRelationRefundJob.shardingTotalCount}"
+                sharding-item-parameters="${orderRelationRefundJob.shardingItemParameters}"
+                misfire="${orderRelationRefundJob.misfire}"
+                overwrite="true" />
+
+</beans>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.common.AliPayWithdrawConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="payer_show_name" property="payerShowName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" extends="BaseResultMap" >
+    <result column="private_key" property="privateKey" jdbcType="LONGVARCHAR" />
+    <result column="public_key" property="publicKey" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_id, payer_show_name, remark, status, create_sys_user, create_date, modify_sys_user, 
+    modify_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    private_key, public_key
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from c_ali_pay_withdraw_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from c_ali_pay_withdraw_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" useGeneratedKeys="true" keyProperty="id" >
+    insert into c_ali_pay_withdraw_config (app_id, payer_show_name, remark, 
+      status, create_sys_user, create_date, 
+      modify_sys_user, modify_date, private_key, 
+      public_key)
+    values (#{appId,jdbcType=VARCHAR}, #{payerShowName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createSysUser,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP}, #{privateKey,jdbcType=LONGVARCHAR}, 
+      #{publicKey,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" useGeneratedKeys="true" keyProperty="id" >
+    insert into c_ali_pay_withdraw_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="payerShowName != null" >
+        payer_show_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="privateKey != null" >
+        private_key,
+      </if>
+      <if test="publicKey != null" >
+        public_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="payerShowName != null" >
+        #{payerShowName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="privateKey != null" >
+        #{privateKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="publicKey != null" >
+        #{publicKey,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" >
+    update c_ali_pay_withdraw_config
+    <set >
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="payerShowName != null" >
+        payer_show_name = #{payerShowName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="privateKey != null" >
+        private_key = #{privateKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="publicKey != null" >
+        public_key = #{publicKey,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" >
+    update c_ali_pay_withdraw_config
+    set app_id = #{appId,jdbcType=VARCHAR},
+      payer_show_name = #{payerShowName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      private_key = #{privateKey,jdbcType=LONGVARCHAR},
+      public_key = #{publicKey,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.common.AliPayWithdrawConfig" >
+    update c_ali_pay_withdraw_config
+    set app_id = #{appId,jdbcType=VARCHAR},
+      payer_show_name = #{payerShowName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getNormal" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from c_ali_pay_withdraw_config
+    where status = 1
+    order by id desc limit 1
+  </select>
+</mapper>

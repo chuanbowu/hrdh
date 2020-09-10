@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.system.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.system.SysRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_remark" property="roleRemark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_name, role_remark, status, create_sys_user, create_date, modify_sys_user,
+    modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.system.SysRole" >
+    insert into sys_role (id, role_name, role_remark,
+    status, create_sys_user, create_date,
+    modify_sys_user, modify_date)
+    values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleRemark,jdbcType=VARCHAR},
+    #{status,jdbcType=INTEGER}, #{createSysUser,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP},
+    #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.system.SysRole" >
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleRemark != null" >
+        role_remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleRemark != null" >
+        #{roleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.system.SysRole" >
+    update sys_role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleRemark != null" >
+        role_remark = #{roleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.system.SysRole" >
+    update sys_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_remark = #{roleRemark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findSysRoleByLimit" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from sys_role
+    where status = 1
+    <if test="roleName != null and roleName != ''" >
+      and role_name like CONCAT('%',#{roleName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="roleRemark != null and roleRemark != ''" >
+      and role_remark like CONCAT('%',#{roleRemark,jdbcType=VARCHAR},'%')
+    </if>
+    order by id desc limit #{beginNum,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
+  <select id="getValidSysRoleNum" resultType="java.lang.Long" >
+    select count(id)
+    from sys_role
+    where  status = 1
+    <if test="roleName != null and roleName != ''" >
+      and role_name like CONCAT('%',#{roleName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="roleRemark != null and roleRemark != ''" >
+      and role_remark like CONCAT('%',#{roleRemark,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+
+  <select id="findRoleNameExist" resultType="java.lang.Integer" >
+    select count(id)
+    from sys_role
+    where  role_name = #{roleName,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateStatusByIds" >
+    update sys_role
+    set status = #{status,jdbcType=INTEGER},
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id in
+    (
+    <foreach collection="idList" item="item" separator=",">
+      #{item,jdbcType=BIGINT}
+    </foreach>
+    )
+  </update>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.system.SysRoleVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_remark" property="roleRemark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findSysUserRoleListByUserId" resultMap="BaseResultMapVm" parameterType="com.flym.hrdh.api.model.system.SysRoleVm" >
+    select
+    r.id, r.role_name, r.role_remark, if(ur.id is null,"flase","true") as type
+    from sys_role r
+	LEFT JOIN sys_user_role ur on ur.role_id = r.id and ur.sys_user_id = #{userId,jdbcType=INTEGER}
+    where status = 1
+  </select>
+</mapper>

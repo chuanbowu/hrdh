@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.partner.PartnerMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.partner.Partner" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="card_pic" property="cardPic" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="business_entry_rate" property="businessEntryRate" jdbcType="DOUBLE" />
+    <result column="commission_rate" property="commissionRate" jdbcType="DOUBLE" />
+    <result column="balance_price" property="balancePrice" jdbcType="DOUBLE" />
+    <result column="estimated_revenue_price" property="estimatedRevenuePrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, nick_name, password, name, card_number, card_pic, code, business_entry_rate,
+    commission_rate, balance_price, estimated_revenue_price, status, login_date, login_ip,
+    create_sys_user, create_date, modify_sys_user, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from p_partner
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from p_partner
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.partner.Partner" useGeneratedKeys="true" keyProperty="id" >
+    insert into p_partner (phone, nick_name, password,
+    name, card_number, card_pic,
+    code, business_entry_rate, commission_rate,
+    balance_price, estimated_revenue_price, status,
+    login_date, login_ip, create_sys_user,
+    create_date, modify_sys_user, modify_date
+    )
+    values (#{phone,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    #{name,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, #{cardPic,jdbcType=VARCHAR},
+    #{code,jdbcType=VARCHAR}, #{businessEntryRate,jdbcType=DOUBLE}, #{commissionRate,jdbcType=DOUBLE},
+    #{balancePrice,jdbcType=DOUBLE}, #{estimatedRevenuePrice,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER},
+    #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}, #{createSysUser,jdbcType=BIGINT},
+    #{createDate,jdbcType=TIMESTAMP}, #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.partner.Partner" useGeneratedKeys="true" keyProperty="id" >
+    insert into p_partner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="cardPic != null" >
+        card_pic,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="businessEntryRate != null" >
+        business_entry_rate,
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate,
+      </if>
+      <if test="balancePrice != null" >
+        balance_price,
+      </if>
+      <if test="estimatedRevenuePrice != null" >
+        estimated_revenue_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="loginDate != null" >
+        login_date,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPic != null" >
+        #{cardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEntryRate != null" >
+        #{businessEntryRate,jdbcType=DOUBLE},
+      </if>
+      <if test="commissionRate != null" >
+        #{commissionRate,jdbcType=DOUBLE},
+      </if>
+      <if test="balancePrice != null" >
+        #{balancePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedRevenuePrice != null" >
+        #{estimatedRevenuePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="loginDate != null" >
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.partner.Partner" >
+    update p_partner
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPic != null" >
+        card_pic = #{cardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEntryRate != null" >
+        business_entry_rate = #{businessEntryRate,jdbcType=DOUBLE},
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate = #{commissionRate,jdbcType=DOUBLE},
+      </if>
+      <if test="balancePrice != null" >
+        balance_price = #{balancePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedRevenuePrice != null" >
+        estimated_revenue_price = #{estimatedRevenuePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="loginDate != null" >
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.partner.Partner" >
+    update p_partner
+    set phone = #{phone,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      card_pic = #{cardPic,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      business_entry_rate = #{businessEntryRate,jdbcType=DOUBLE},
+      commission_rate = #{commissionRate,jdbcType=DOUBLE},
+      balance_price = #{balancePrice,jdbcType=DOUBLE},
+      estimated_revenue_price = #{estimatedRevenuePrice,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.system.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.system.SysUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, password, true_name, login_ip, login_date, status, create_sys_user,
+    create_date, modify_sys_user, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.system.SysUser" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_user (id, user_name, password,
+      true_name, login_ip, login_date,
+      status, create_sys_user, create_date,
+      modify_sys_user, modify_date)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{trueName,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, #{loginDate,jdbcType=TIMESTAMP},
+      #{status,jdbcType=INTEGER}, #{createSysUser,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP},
+      #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.system.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="loginDate != null" >
+        login_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null" >
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.system.SysUser" >
+    update sys_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null" >
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.system.SysUser" >
+    update sys_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="loginUser" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_name = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    and status = 1
+  </select>
+
+  <select id="findSysUser" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where 1 = 1
+    <if test="userName != null" >
+      and instr(user_name, #{userName,jdbcType=VARCHAR})
+    </if>
+    <if test="trueName != null" >
+      and instr(true_name, #{trueName,jdbcType=VARCHAR})
+    </if>
+    <if test = "status != null and status > 0">
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test = "status == 0">
+      and status != 3
+    </if>
+    order by id desc limit #{beginNum,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateStatusByIds" >
+    update sys_user
+    set status = #{type,jdbcType=VARCHAR},
+    modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+    modify_date = #{modifySysDate,jdbcType=TIMESTAMP}
+    where id in
+    (
+    <foreach collection="idList" item="item" separator=",">
+      #{item,jdbcType=BIGINT}
+    </foreach>
+    )
+  </update>
+
+  <update id="updatePasswordByIds" >
+    update sys_user
+    set password = #{defaultPassword,jdbcType=INTEGER},
+    modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+    modify_date = #{modifySysDate,jdbcType=TIMESTAMP}
+    where id in
+    (
+    <foreach collection="idList" item="item" separator=",">
+      #{item,jdbcType=BIGINT}
+    </foreach>
+    )
+  </update>
+
+  <select id="getSysUserTotalRow" resultType="INTEGER" >
+    select count(*) from sys_user
+    where 1 = 1
+    <if test="userName != null" >
+      and user_name = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="trueName != null" >
+      and true_name = #{trueName,jdbcType=VARCHAR}
+    </if>
+    <if test = "status != null and status > 0">
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test = "status == null">
+      and status != 3
+    </if>
+  </select>
+
+  <select id="randGetSysUserByRole" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    u.id, u.user_name, u.password, u.true_name, u.login_ip, u.login_date, u.status, u.create_sys_user,
+    u.create_date, u.modify_sys_user, u.modify_date
+    from sys_user u left join sys_user_role r on u.id = r.sys_user_id
+    where r.role_id = #{roleId, jdbcType=BIGINT}
+    and u.status = 1 order by rand() limit 1
+  </select>
+
+  <select id="findSysUserNameNum" resultType="java.lang.Integer">
+    SELECT
+    COUNT(id)
+    FROM sys_user
+    WHERE status != 3
+    <if test="userName != null and userName != ''">
+      AND user_name = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="id != null" >
+      AND id != #{id,jdbcType=BIGINT}
+    </if>
+  </select>
+</mapper>

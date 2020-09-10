@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.business.CommissionGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.business.CommissionGoods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="business_id" property="businessId" jdbcType="BIGINT" />
+    <result column="business_title" property="businessTitle" jdbcType="VARCHAR" />
+    <result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="coupon_after_price" property="couponAfterPrice" jdbcType="DOUBLE" />
+    <result column="coupon_price" property="couponPrice" jdbcType="DOUBLE" />
+    <result column="commission_price" property="commissionPrice" jdbcType="DOUBLE" />
+    <result column="proportion" property="proportion" jdbcType="INTEGER" />
+    <result column="surplus_num" property="surplusNum" jdbcType="INTEGER" />
+    <result column="shot_requirement" property="shotRequirement" jdbcType="VARCHAR" />
+    <result column="rule_description" property="ruleDescription" jdbcType="VARCHAR" />
+    <result column="condition_num" property="conditionNum" jdbcType="INTEGER" />
+    <result column="deposit_pric" property="depositPric" jdbcType="DOUBLE" />
+    <result column="activity_start_date" property="activityStartDate" jdbcType="TIMESTAMP" />
+    <result column="activity_end_date" property="activityEndDate" jdbcType="TIMESTAMP" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="item_url" property="itemUrl" jdbcType="VARCHAR" />
+    <result column="promotion_link" property="promotionLink" jdbcType="VARCHAR" />
+    <result column="coupon_share_url" property="couponShareUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.flym.hrdh.pojo.business.CommissionGoods" extends="BaseResultMap" >
+    <result column="details" property="details" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, business_id, business_title, main_pic, type_id, coupon_after_price, coupon_price,
+    commission_price, proportion, surplus_num, shot_requirement, rule_description, condition_num,
+    deposit_pric, activity_start_date, activity_end_date, item_id, item_url, promotion_link,
+    coupon_share_url, status, create_date, modify_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from b_commission_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from b_commission_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.business.CommissionGoods" useGeneratedKeys="true" keyProperty="id" >
+    insert into b_commission_goods (business_id, business_title, main_pic,
+    type_id, coupon_after_price, coupon_price,
+    commission_price, proportion, surplus_num,
+    shot_requirement, rule_description, condition_num,
+    deposit_pric, activity_start_date, activity_end_date,
+    item_id, item_url, promotion_link,
+    coupon_share_url, status, create_date,
+    modify_date, details)
+    values (#{businessId,jdbcType=BIGINT}, #{businessTitle,jdbcType=VARCHAR}, #{mainPic,jdbcType=VARCHAR},
+    #{typeId,jdbcType=BIGINT}, #{couponAfterPrice,jdbcType=DOUBLE}, #{couponPrice,jdbcType=DOUBLE},
+    #{commissionPrice,jdbcType=DOUBLE}, #{proportion,jdbcType=INTEGER}, #{surplusNum,jdbcType=INTEGER},
+    #{shotRequirement,jdbcType=VARCHAR}, #{ruleDescription,jdbcType=VARCHAR}, #{conditionNum,jdbcType=INTEGER},
+    #{depositPric,jdbcType=DOUBLE}, #{activityStartDate,jdbcType=TIMESTAMP}, #{activityEndDate,jdbcType=TIMESTAMP},
+    #{itemId,jdbcType=BIGINT}, #{itemUrl,jdbcType=VARCHAR}, #{promotionLink,jdbcType=VARCHAR},
+    #{couponShareUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP},
+    #{modifyDate,jdbcType=TIMESTAMP}, #{details,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.business.CommissionGoods" useGeneratedKeys="true" keyProperty="id" >
+    insert into b_commission_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="businessId != null" >
+        business_id,
+      </if>
+      <if test="businessTitle != null" >
+        business_title,
+      </if>
+      <if test="mainPic != null" >
+        main_pic,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="couponAfterPrice != null" >
+        coupon_after_price,
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price,
+      </if>
+      <if test="commissionPrice != null" >
+        commission_price,
+      </if>
+      <if test="proportion != null" >
+        proportion,
+      </if>
+      <if test="surplusNum != null" >
+        surplus_num,
+      </if>
+      <if test="shotRequirement != null" >
+        shot_requirement,
+      </if>
+      <if test="ruleDescription != null" >
+        rule_description,
+      </if>
+      <if test="conditionNum != null" >
+        condition_num,
+      </if>
+      <if test="depositPric != null" >
+        deposit_pric,
+      </if>
+      <if test="activityStartDate != null" >
+        activity_start_date,
+      </if>
+      <if test="activityEndDate != null" >
+        activity_end_date,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemUrl != null" >
+        item_url,
+      </if>
+      <if test="promotionLink != null" >
+        promotion_link,
+      </if>
+      <if test="couponShareUrl != null" >
+        coupon_share_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="businessId != null" >
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="businessTitle != null" >
+        #{businessTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPic != null" >
+        #{mainPic,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="couponAfterPrice != null" >
+        #{couponAfterPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="couponPrice != null" >
+        #{couponPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="commissionPrice != null" >
+        #{commissionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="proportion != null" >
+        #{proportion,jdbcType=INTEGER},
+      </if>
+      <if test="surplusNum != null" >
+        #{surplusNum,jdbcType=INTEGER},
+      </if>
+      <if test="shotRequirement != null" >
+        #{shotRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDescription != null" >
+        #{ruleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNum != null" >
+        #{conditionNum,jdbcType=INTEGER},
+      </if>
+      <if test="depositPric != null" >
+        #{depositPric,jdbcType=DOUBLE},
+      </if>
+      <if test="activityStartDate != null" >
+        #{activityStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activityEndDate != null" >
+        #{activityEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemUrl != null" >
+        #{itemUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionLink != null" >
+        #{promotionLink,jdbcType=VARCHAR},
+      </if>
+      <if test="couponShareUrl != null" >
+        #{couponShareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.business.CommissionGoods" >
+    update b_commission_goods
+    <set >
+      <if test="businessId != null" >
+        business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="businessTitle != null" >
+        business_title = #{businessTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPic != null" >
+        main_pic = #{mainPic,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="couponAfterPrice != null" >
+        coupon_after_price = #{couponAfterPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price = #{couponPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="commissionPrice != null" >
+        commission_price = #{commissionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="proportion != null" >
+        proportion = #{proportion,jdbcType=INTEGER},
+      </if>
+      <if test="surplusNum != null" >
+        surplus_num = #{surplusNum,jdbcType=INTEGER},
+      </if>
+      <if test="shotRequirement != null" >
+        shot_requirement = #{shotRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleDescription != null" >
+        rule_description = #{ruleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNum != null" >
+        condition_num = #{conditionNum,jdbcType=INTEGER},
+      </if>
+      <if test="depositPric != null" >
+        deposit_pric = #{depositPric,jdbcType=DOUBLE},
+      </if>
+      <if test="activityStartDate != null" >
+        activity_start_date = #{activityStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activityEndDate != null" >
+        activity_end_date = #{activityEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="itemUrl != null" >
+        item_url = #{itemUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionLink != null" >
+        promotion_link = #{promotionLink,jdbcType=VARCHAR},
+      </if>
+      <if test="couponShareUrl != null" >
+        coupon_share_url = #{couponShareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.business.CommissionGoods" >
+    update b_commission_goods
+    set business_id = #{businessId,jdbcType=BIGINT},
+    business_title = #{businessTitle,jdbcType=VARCHAR},
+    main_pic = #{mainPic,jdbcType=VARCHAR},
+    type_id = #{typeId,jdbcType=BIGINT},
+    coupon_after_price = #{couponAfterPrice,jdbcType=DOUBLE},
+    coupon_price = #{couponPrice,jdbcType=DOUBLE},
+    commission_price = #{commissionPrice,jdbcType=DOUBLE},
+    proportion = #{proportion,jdbcType=INTEGER},
+    surplus_num = #{surplusNum,jdbcType=INTEGER},
+    shot_requirement = #{shotRequirement,jdbcType=VARCHAR},
+    rule_description = #{ruleDescription,jdbcType=VARCHAR},
+    condition_num = #{conditionNum,jdbcType=INTEGER},
+    deposit_pric = #{depositPric,jdbcType=DOUBLE},
+    activity_start_date = #{activityStartDate,jdbcType=TIMESTAMP},
+    activity_end_date = #{activityEndDate,jdbcType=TIMESTAMP},
+    item_id = #{itemId,jdbcType=BIGINT},
+    item_url = #{itemUrl,jdbcType=VARCHAR},
+    promotion_link = #{promotionLink,jdbcType=VARCHAR},
+    coupon_share_url = #{couponShareUrl,jdbcType=VARCHAR},
+    status = #{status,jdbcType=INTEGER},
+    create_date = #{createDate,jdbcType=TIMESTAMP},
+    modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+    details = #{details,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findCommissionGoodsListByGoodsName" resultMap="BaseResultMap">
+    select
+    cg.id, cg.business_title, cg.main_pic, cg.type_id, cg.details, cg.coupon_after_price, cg.coupon_price,
+    cg.commission_price, cg.proportion, cg.surplus_num, cg.shot_requirement, cg.rule_description, cg.condition_num,
+    cg.deposit_pric
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    where cg.status = 1
+    and b.status = 1
+    <if test="goodsName != null and goodsName != ''">
+      and instr(cg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+    ORDER BY b.grade_type,cg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getCommissionGoodsListByGoodsNameNum" resultType="java.lang.Integer">
+    select
+    count(cg.id)
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    where cg.status = 1
+    and b.status = 1
+    <if test="goodsName != null and goodsName != ''">
+      and instr(cg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <select id="findCommissionGoodsListByType" resultMap="BaseResultMap">
+    select
+    cg.id, cg.business_title, cg.main_pic, cg.type_id, cg.details, cg.coupon_after_price, cg.coupon_price,
+    cg.commission_price, cg.proportion, cg.surplus_num, cg.shot_requirement, cg.rule_description, cg.condition_num,
+    cg.deposit_pric
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    where cg.status = 1
+    and b.status = 1
+    <if test="typeId != null" >
+      and cg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    ORDER BY cg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getCommissionGoodsListByTypeNum" resultType="java.lang.Integer">
+    select
+    count(cg.id)
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    where cg.status = 1
+    and b.status = 1
+    <if test="typeId != null" >
+      and cg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.business.CommissionGoodsVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="business_id" property="businessId" jdbcType="BIGINT" />
+    <result column="business_title" property="businessTitle" jdbcType="VARCHAR" />
+    <result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="coupon_after_price" property="couponAfterPrice" jdbcType="DOUBLE" />
+    <result column="coupon_price" property="couponPrice" jdbcType="DOUBLE" />
+    <result column="commission_price" property="commissionPrice" jdbcType="DOUBLE" />
+    <result column="proportion" property="proportion" jdbcType="INTEGER" />
+    <result column="surplus_num" property="surplusNum" jdbcType="INTEGER" />
+    <result column="shot_requirement" property="shotRequirement" jdbcType="VARCHAR" />
+    <result column="rule_description" property="ruleDescription" jdbcType="VARCHAR" />
+    <result column="condition_num" property="conditionNum" jdbcType="INTEGER" />
+    <result column="deposit_pric" property="depositPric" jdbcType="DOUBLE" />
+    <result column="activity_start_date" property="activityStartDate" jdbcType="TIMESTAMP" />
+    <result column="activity_end_date" property="activityEndDate" jdbcType="TIMESTAMP" />
+    <result column="item_url" property="itemUrl" jdbcType="VARCHAR" />
+    <result column="promotion_link" property="promotionLink" jdbcType="VARCHAR" />
+    <result column="coupon_share_url" property="couponShareUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="baby_description" property="babyDescription" jdbcType="DOUBLE" />
+    <result column="seller_services" property="sellerServices" jdbcType="DOUBLE" />
+    <result column="logistics_service" property="logisticsService" jdbcType="DOUBLE" />
+    <result column="grade_type" property="gradeType" jdbcType="INTEGER" />
+    <result column="reputation_type" property="reputationType" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="getCommissionGoodsVm" resultMap="BaseResultMapVm">
+    select
+    cg.id, cg.business_id, cg.business_title, cg.main_pic, cg.type_id, cg.details, cg.coupon_after_price, cg.coupon_price,
+    cg.commission_price, cg.proportion, cg.surplus_num, cg.shot_requirement, cg.rule_description, cg.condition_num,
+    cg.deposit_pric, cg.activity_start_date, cg.activity_end_date, cg.promotion_link, cg.status, cg.modify_date, cg.create_date,
+    cg.item_url, cg.coupon_share_url,
+    b.phone, b.head_pic, b.shop_name, b.baby_description, b.seller_services, b.logistics_service, b.grade_type, b.reputation_type,
+    gt.type_name
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    left join c_goods_type_config gt on gt.id = cg.type_id
+    where cg.id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="findCommissionGoodsListByGrade" resultMap="BaseResultMap">
+    select
+    cg.id, cg.business_title, cg.main_pic, cg.type_id, cg.details, cg.coupon_after_price, cg.coupon_price,
+    cg.commission_price, cg.proportion, cg.surplus_num, cg.shot_requirement, cg.rule_description, cg.condition_num,
+    cg.deposit_pric
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    where cg.status = 1
+    and b.grade_type = 3
+    and b.status = 1
+    <if test="typeId != null" >
+      and cg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="goodsName != null and goodsName != ''">
+      and instr(cg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+    ORDER BY cg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getCommissionGoodsListByGradeNum" resultType="java.lang.Integer">
+    select
+    count(cg.id)
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    where cg.status = 1
+    and b.grade_type = 3
+    and b.status = 1
+    <if test="typeId != null" >
+      and cg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="goodsName != null and goodsName != ''">
+      and instr(cg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <select id="findCommissionGoodsListByBusinessId" resultMap="BaseResultMapVm">
+    select
+    cg.id, cg.business_id, cg.business_title, cg.main_pic, cg.type_id, cg.coupon_after_price, cg.coupon_price,
+    cg.commission_price, cg.proportion, cg.surplus_num, cg.shot_requirement, cg.rule_description, cg.condition_num,
+    cg.deposit_pric, cg.activity_start_date, cg.activity_end_date, cg.item_id, cg.item_url, cg.promotion_link,
+    cg.coupon_share_url, cg.status, cg.create_date, cg.modify_date, cg.details,
+    gt.type_name
+    from b_commission_goods cg
+    left join c_goods_type_config gt on gt.id = cg.type_id
+    where cg.status != 3
+    and cg.business_id = #{businessId,jdbcType=BIGINT}
+    <if test="typeId != null" >
+      and cg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(cg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+    ORDER BY cg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getCommissionGoodsListByBusinessId" resultType="java.lang.Integer">
+    select
+    count(id)
+    from b_commission_goods
+    where status != 3
+    and business_id = #{businessId,jdbcType=BIGINT}
+    <if test="typeId != null" >
+      and type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <update id="updateStatus">
+    update b_commission_goods
+    set status = #{status,jdbcType=INTEGER},
+    modify_date = #{date,jdbcType=TIMESTAMP}
+    where id in(${goodsIds})
+  </update>
+
+  <select id="getNewCommissionGoodsNum" resultType="java.lang.Integer">
+    SELECT count(id)
+    from b_commission_goods
+    where
+    business_id = #{businessId,jdbcType=BIGINT}
+    and DATE_FORMAT(create_date ,'%Y-%m') = DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m')
+  </select>
+
+  <select id="findCommissionGoodsVmList" resultMap="BaseResultMapVm">
+    select
+    cg.id, cg.business_id, cg.business_title, cg.main_pic, cg.type_id, cg.details, cg.coupon_after_price, cg.coupon_price,
+    cg.commission_price, cg.proportion, cg.surplus_num, cg.shot_requirement, cg.rule_description, cg.condition_num,
+    cg.deposit_pric, cg.activity_start_date, cg.activity_end_date, cg.promotion_link, cg.status, cg.create_date,
+    cg.item_url, cg.coupon_share_url,
+    b.head_pic, b.shop_name, b.phone,
+    gt.type_name
+    from b_commission_goods cg
+    left join b_business b on b.id = cg.business_id
+    left join c_goods_type_config gt on gt.id = cg.type_id
+    where cg.status != 3
+    <if test="businessId != null" >
+      and cg.business_id = #{businessId,jdbcType=BIGINT}
+    </if>
+    <if test="typeId != null" >
+      and cg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(cg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+    ORDER BY cg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getCommissionGoodsVmNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from b_commission_goods
+    where status != 3
+    <if test="businessId != null" >
+      and business_id = #{businessId,jdbcType=BIGINT}
+    </if>
+    <if test="typeId != null" >
+      and type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <update id="updateSurplusNum" parameterType="com.flym.hrdh.pojo.business.CommissionGoods" >
+    update b_commission_goods
+    set
+    <if test="status == 1" >
+      surplus_num = surplus_num + 1
+    </if>
+    <if test="status == 2" >
+      surplus_num = surplus_num - 1
+    </if>
+    where id = #{goodsId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getIdByItemId" resultType="java.lang.Long">
+    select
+    id
+    from b_commission_goods
+    where item_id = #{itemId,jdbcType=BIGINT}
+    and status != 3
+  </select>
+</mapper>

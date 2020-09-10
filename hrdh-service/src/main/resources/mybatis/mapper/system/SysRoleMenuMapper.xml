@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.system.SysRoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.system.SysRoleMenu" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="menu_id" property="menuId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, menu_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_role_menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_role_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.system.SysRoleMenu" >
+    insert into sys_role_menu (id, role_id, menu_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.system.SysRoleMenu" >
+    insert into sys_role_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.system.SysRoleMenu" >
+    update sys_role_menu
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.system.SysRoleMenu" >
+    update sys_role_menu
+    set role_id = #{roleId,jdbcType=BIGINT},
+      menu_id = #{menuId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.system.SysRoleMenuVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="menu_id" property="menuId" jdbcType="BIGINT" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_remark" property="menuRemark" jdbcType="VARCHAR" />
+    <result column="menu_logo" property="menuLogo" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_level" property="menuLevel" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="sor_num" property="sorNum" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List_Vm" >
+    a.menu_id, m.menu_name, m.menu_level, m.parent_id, m.menu_logo, m.menu_url, m.sor_num
+  </sql>
+
+  <select id="findTopRoleMenu" resultMap="BaseResultMapVm" parameterType="java.lang.Long" >
+    select
+    DISTINCT <include refid="Base_Column_List_Vm" />
+    from sys_role_menu a
+    LEFT JOIN sys_menu m ON a.menu_id = m.id
+    LEFT JOIN sys_user_role r on r.role_id = a.role_id
+    where r.sys_user_id = #{userId,jdbcType=BIGINT}
+    AND m.menu_level = 1
+    AND m.status = 1
+    ORDER BY m.sor_num ASC;
+  </select>
+
+  <select id="findTowRoleMenu" resultMap="BaseResultMapVm" parameterType="java.lang.Long" >
+    select
+    DISTINCT <include refid="Base_Column_List_Vm" />
+    from sys_role_menu a
+    LEFT JOIN sys_menu m ON a.menu_id = m.id
+    LEFT JOIN sys_user_role r on r.role_id = a.role_id
+    where r.sys_user_id = #{userId,jdbcType=BIGINT}
+    AND m.parent_id = #{parentId,jdbcType=BIGINT}
+    AND m.status = 1
+    ORDER BY m.sor_num ASC;
+  </select>
+
+  <delete id="deleteBySysRoleId" parameterType="java.lang.Long" >
+    delete from sys_role_menu
+    where role_id = #{sysRoleId,jdbcType=BIGINT}
+  </delete>
+
+  <insert id ="addRoleMenu" parameterType="com.flym.hrdh.pojo.system.SysUserRole">
+    insert into sys_role_menu
+    (role_id,menu_id)
+    values
+    <foreach collection ="list" item="bean" index= "index" separator =",">
+      (
+      #{bean.roleId}, #{bean.menuId}
+      )
+    </foreach >
+  </insert>
+</mapper>

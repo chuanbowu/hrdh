@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.business.TakeDeliveryGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.business.TakeDeliveryGoods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="business_id" property="businessId" jdbcType="BIGINT" />
+    <result column="business_title" property="businessTitle" jdbcType="VARCHAR" />
+    <result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.flym.hrdh.pojo.business.TakeDeliveryGoods" extends="BaseResultMap" >
+    <result column="details" property="details" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, business_id, business_title, main_pic, goods_price, type_id, status, create_sys_user,
+    create_date, modify_sys_user, modify_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from b_take_delivery_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from b_take_delivery_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.business.TakeDeliveryGoods" useGeneratedKeys="true" keyProperty="id" >
+    insert into b_take_delivery_goods (business_id, business_title, main_pic,
+    goods_price, type_id, status,
+    create_sys_user, create_date, modify_sys_user,
+    modify_date, details)
+    values (#{businessId,jdbcType=BIGINT}, #{businessTitle,jdbcType=VARCHAR}, #{mainPic,jdbcType=VARCHAR},
+    #{goodsPrice,jdbcType=DOUBLE}, #{typeId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER},
+    #{createSysUser,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{modifySysUser,jdbcType=BIGINT},
+    #{modifyDate,jdbcType=TIMESTAMP}, #{details,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.business.TakeDeliveryGoods" useGeneratedKeys="true" keyProperty="id" >
+    insert into b_take_delivery_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="businessId != null" >
+        business_id,
+      </if>
+      <if test="businessTitle != null" >
+        business_title,
+      </if>
+      <if test="mainPic != null" >
+        main_pic,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="businessId != null" >
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="businessTitle != null" >
+        #{businessTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPic != null" >
+        #{mainPic,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.business.TakeDeliveryGoods" >
+    update b_take_delivery_goods
+    <set >
+      <if test="businessId != null" >
+        business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="businessTitle != null" >
+        business_title = #{businessTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPic != null" >
+        main_pic = #{mainPic,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.business.TakeDeliveryGoods" >
+    update b_take_delivery_goods
+    set business_id = #{businessId,jdbcType=BIGINT},
+    business_title = #{businessTitle,jdbcType=VARCHAR},
+    main_pic = #{mainPic,jdbcType=VARCHAR},
+    goods_price = #{goodsPrice,jdbcType=DOUBLE},
+    type_id = #{typeId,jdbcType=BIGINT},
+    status = #{status,jdbcType=INTEGER},
+    create_sys_user = #{createSysUser,jdbcType=BIGINT},
+    create_date = #{createDate,jdbcType=TIMESTAMP},
+    modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+    modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+    details = #{details,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findTakeDeliveryGoodsListByGoodsName" resultMap="BaseResultMap">
+    select
+    dg.id, dg.business_id, dg.business_title, dg.main_pic, dg.goods_price, dg.type, dg.details
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    where dg.status = 1
+    and b.status = 1
+    <if test="goodsName != null and goodsName != ''">
+      and instr(dg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+    ORDER BY b.grade_type,dg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getTakeDeliveryGoodsListByGoodsNameNum" resultType="java.lang.Integer">
+    select
+    count(dg.id)
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    where dg.status = 1
+    and b.status = 1
+    <if test="goodsName != null and goodsName != ''">
+      and instr(dg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <select id="findTakeDeliveryGoodsListByType" resultMap="BaseResultMap">
+    select
+    dg.id, dg.business_id, dg.business_title, dg.main_pic, dg.goods_price, dg.type_id, dg.details
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    where dg.status = 1
+    and b.status = 1
+    <if test="typeId != null" >
+      and dg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    ORDER BY dg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getTakeDeliveryGoodsListByTypeNum" resultType="java.lang.Integer">
+    select
+    count(dg.id)
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    where dg.status = 1
+    and b.status = 1
+    <if test="typeId != null" >
+      and dg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.business.TakeDeliveryGoodsVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="business_id" property="businessId" jdbcType="BIGINT" />
+    <result column="business_title" property="businessTitle" jdbcType="VARCHAR" />
+    <result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="baby_description" property="babyDescription" jdbcType="DOUBLE" />
+    <result column="seller_services" property="sellerServices" jdbcType="DOUBLE" />
+    <result column="logistics_service" property="logisticsService" jdbcType="DOUBLE" />
+    <result column="grade_type" property="gradeType" jdbcType="INTEGER" />
+    <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+    <result column="customer_we_chat_pic" property="customerWeChatPic" jdbcType="VARCHAR" />
+    <result column="reputation_type" property="reputationType" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="getTakeDeliveryGoodsVm" resultMap="BaseResultMapVm">
+    select
+    dg.id, dg.business_id, dg.business_title, dg.main_pic, dg.goods_price, dg.type_id, dg.details,
+    dg.status, dg.create_date,
+    b.shop_name, b.head_pic, b.baby_description, b.seller_services, b.logistics_service, b.grade_type,
+    b.customer_phone, b.customer_we_chat_pic, b.reputation_type,
+    gt.type_name
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    left join c_goods_type_config gt on gt.id = dg.type_id
+    where dg.id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="findTakeDeliveryGoodsListByGrade" resultMap="BaseResultMap">
+    select
+    dg.id, dg.business_id, dg.business_title, dg.main_pic, dg.goods_price, dg.type_id, dg.details
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    where dg.status = 1
+    and b.grade_type = 3
+    and b.status = 1
+    <if test="typeId != null" >
+      and dg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="goodsName != null and goodsName != ''">
+      and instr(dg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+    ORDER BY dg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getTakeDeliveryGoodsListByGradeNum" resultType="java.lang.Integer">
+    select
+    count(dg.id)
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    where dg.status = 1
+    and b.grade_type = 3
+    and b.status = 1
+    <if test="typeId != null" >
+      and dg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="goodsName != null and goodsName != ''">
+      and instr(dg.business_title, #{goodsName, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <select id="findTakeDeliveryGoodsListByBusinessId" resultMap="BaseResultMapVm">
+    select
+    td.id, td.business_id, td.business_title, td.main_pic, td.goods_price, td.type_id, td.status, td.create_sys_user,
+    td.create_date, td.modify_sys_user, td.modify_date,
+    gt.type_name
+    from b_take_delivery_goods td
+    left join c_goods_type_config gt on gt.id = td.type_id
+    where td.status != 3
+    and td.business_id = #{businessId,jdbcType=BIGINT}
+    <if test="typeId != null" >
+      and td.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(td.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+    ORDER BY td.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getTakeDeliveryGoodsListByBusinessIdNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from b_take_delivery_goods
+    where status != 3
+    and business_id = #{businessId,jdbcType=BIGINT}
+    <if test="typeId != null" >
+      and type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <update id="updateStatus">
+    update b_take_delivery_goods
+    set status = #{status,jdbcType=INTEGER},
+    modify_date = #{date,jdbcType=TIMESTAMP}
+    where id in(${goodsIds})
+  </update>
+
+  <select id="getNewTakeDeliveryGoodsNum" resultType="java.lang.Integer">
+    SELECT count(id)
+    from b_take_delivery_goods
+    where
+    business_id = #{businessId,jdbcType=BIGINT}
+    and DATE_FORMAT(create_date ,'%Y-%m') = DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m');
+  </select>
+
+  <select id="findTakeDeliveryGoodsVmList" resultMap="BaseResultMapVm">
+    select
+    dg.id, dg.business_id, dg.business_title, dg.main_pic, dg.goods_price, dg.type_id, dg.details, dg.status,
+    dg.create_date, dg.modify_date,
+    b.head_pic, b.shop_name, b.phone,
+    gt.type_name
+    from b_take_delivery_goods dg
+    left join b_business b on b.id = dg.business_id
+    left join c_goods_type_config gt on gt.id = dg.type_id
+    where  dg.status != 3
+    <if test="businessId != null" >
+      and dg.business_id = #{businessId,jdbcType=BIGINT}
+    </if>
+    <if test="typeId != null" >
+      and dg.type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(dg.business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+    ORDER BY dg.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getTakeDeliveryGoodsVmNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from b_take_delivery_goods
+    where status != 3
+    <if test="businessId != null" >
+      and business_id = #{businessId,jdbcType=BIGINT}
+    </if>
+    <if test="typeId != null" >
+      and type_id = #{typeId,jdbcType=INTEGER}
+    </if>
+    <if test="businessTitle != null and businessTitle != ''">
+      and instr(business_title, #{businessTitle, jdbcType=VARCHAR})
+    </if>
+  </select>
+</mapper>

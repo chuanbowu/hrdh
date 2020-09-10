@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.partner.PartnerIncomeMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.partner.PartnerIncome" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="partner_id" property="partnerId" jdbcType="BIGINT" />
+    <result column="business_id" property="businessId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="commission_price" property="commissionPrice" jdbcType="DOUBLE" />
+    <result column="income_date" property="incomeDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, partner_id, business_id, goods_id, type, commission_price, income_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_partner_income
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from p_partner_income
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.partner.PartnerIncome" useGeneratedKeys="true" keyProperty="id" >
+    insert into p_partner_income (partner_id, business_id, goods_id, 
+      type, commission_price, income_date
+      )
+    values (#{partnerId,jdbcType=BIGINT}, #{businessId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, 
+      #{type,jdbcType=INTEGER}, #{commissionPrice,jdbcType=DOUBLE}, #{incomeDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.partner.PartnerIncome" useGeneratedKeys="true" keyProperty="id" >
+    insert into p_partner_income
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partnerId != null" >
+        partner_id,
+      </if>
+      <if test="businessId != null" >
+        business_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="commissionPrice != null" >
+        commission_price,
+      </if>
+      <if test="incomeDate != null" >
+        income_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partnerId != null" >
+        #{partnerId,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null" >
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="commissionPrice != null" >
+        #{commissionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="incomeDate != null" >
+        #{incomeDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.partner.PartnerIncome" >
+    update p_partner_income
+    <set >
+      <if test="partnerId != null" >
+        partner_id = #{partnerId,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null" >
+        business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="commissionPrice != null" >
+        commission_price = #{commissionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="incomeDate != null" >
+        income_date = #{incomeDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.partner.PartnerIncome" >
+    update p_partner_income
+    set partner_id = #{partnerId,jdbcType=BIGINT},
+      business_id = #{businessId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      commission_price = #{commissionPrice,jdbcType=DOUBLE},
+      income_date = #{incomeDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

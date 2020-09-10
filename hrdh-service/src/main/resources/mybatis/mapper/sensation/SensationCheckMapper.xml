@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.sensation.SensationCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.sensation.SensationCheck" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="extension_status" property="extensionStatus" jdbcType="INTEGER" />
+    <result column="authentication_link" property="authenticationLink" jdbcType="VARCHAR" />
+    <result column="authentication_pic" property="authenticationPic" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="followers_spread_type" property="followersSpreadType" jdbcType="INTEGER" />
+    <result column="extension_type" property="extensionType" jdbcType="VARCHAR" />
+    <result column="followers_num" property="followersNum" jdbcType="INTEGER" />
+    <result column="total_liked_num" property="totalLikedNum" jdbcType="INTEGER" />
+    <result column="single_highest_num" property="singleHighestNum" jdbcType="INTEGER" />
+    <result column="sensation_survey" property="sensationSurvey" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="check_sys_user" property="checkSysUser" jdbcType="BIGINT" />
+    <result column="refuse_content" property="refuseContent" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sensation_id, extension_status, authentication_link, authentication_pic, check_status,
+    content_type, followers_spread_type, extension_type, followers_num, total_liked_num,
+    single_highest_num, sensation_survey, create_date, check_sys_user, refuse_content,
+    check_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation_check
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_sensation_check
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.sensation.SensationCheck" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_check (sensation_id, extension_status, authentication_link,
+    authentication_pic, check_status, content_type,
+    followers_spread_type, extension_type, followers_num,
+    total_liked_num, single_highest_num, sensation_survey,
+    create_date, check_sys_user, refuse_content,
+    check_date)
+    values (#{sensationId,jdbcType=BIGINT}, #{extensionStatus,jdbcType=INTEGER}, #{authenticationLink,jdbcType=VARCHAR},
+    #{authenticationPic,jdbcType=VARCHAR}, #{checkStatus,jdbcType=INTEGER}, #{contentType,jdbcType=INTEGER},
+    #{followersSpreadType,jdbcType=INTEGER}, #{extensionType,jdbcType=VARCHAR}, #{followersNum,jdbcType=INTEGER},
+    #{totalLikedNum,jdbcType=INTEGER}, #{singleHighestNum,jdbcType=INTEGER}, #{sensationSurvey,jdbcType=VARCHAR},
+    #{createDate,jdbcType=TIMESTAMP}, #{checkSysUser,jdbcType=BIGINT}, #{refuseContent,jdbcType=VARCHAR},
+    #{checkDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.sensation.SensationCheck" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        sensation_id,
+      </if>
+      <if test="extensionStatus != null" >
+        extension_status,
+      </if>
+      <if test="authenticationLink != null" >
+        authentication_link,
+      </if>
+      <if test="authenticationPic != null" >
+        authentication_pic,
+      </if>
+      <if test="checkStatus != null" >
+        check_status,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="followersSpreadType != null" >
+        followers_spread_type,
+      </if>
+      <if test="extensionType != null" >
+        extension_type,
+      </if>
+      <if test="followersNum != null" >
+        followers_num,
+      </if>
+      <if test="totalLikedNum != null" >
+        total_liked_num,
+      </if>
+      <if test="singleHighestNum != null" >
+        single_highest_num,
+      </if>
+      <if test="sensationSurvey != null" >
+        sensation_survey,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="checkSysUser != null" >
+        check_sys_user,
+      </if>
+      <if test="refuseContent != null" >
+        refuse_content,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="extensionStatus != null" >
+        #{extensionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationLink != null" >
+        #{authenticationLink,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationPic != null" >
+        #{authenticationPic,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="followersSpreadType != null" >
+        #{followersSpreadType,jdbcType=INTEGER},
+      </if>
+      <if test="extensionType != null" >
+        #{extensionType,jdbcType=VARCHAR},
+      </if>
+      <if test="followersNum != null" >
+        #{followersNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalLikedNum != null" >
+        #{totalLikedNum,jdbcType=INTEGER},
+      </if>
+      <if test="singleHighestNum != null" >
+        #{singleHighestNum,jdbcType=INTEGER},
+      </if>
+      <if test="sensationSurvey != null" >
+        #{sensationSurvey,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkSysUser != null" >
+        #{checkSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="refuseContent != null" >
+        #{refuseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.sensation.SensationCheck" >
+    update s_sensation_check
+    <set >
+      <if test="sensationId != null" >
+        sensation_id = #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="extensionStatus != null" >
+        extension_status = #{extensionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationLink != null" >
+        authentication_link = #{authenticationLink,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationPic != null" >
+        authentication_pic = #{authenticationPic,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="followersSpreadType != null" >
+        followers_spread_type = #{followersSpreadType,jdbcType=INTEGER},
+      </if>
+      <if test="extensionType != null" >
+        extension_type = #{extensionType,jdbcType=VARCHAR},
+      </if>
+      <if test="followersNum != null" >
+        followers_num = #{followersNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalLikedNum != null" >
+        total_liked_num = #{totalLikedNum,jdbcType=INTEGER},
+      </if>
+      <if test="singleHighestNum != null" >
+        single_highest_num = #{singleHighestNum,jdbcType=INTEGER},
+      </if>
+      <if test="sensationSurvey != null" >
+        sensation_survey = #{sensationSurvey,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkSysUser != null" >
+        check_sys_user = #{checkSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="refuseContent != null" >
+        refuse_content = #{refuseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.sensation.SensationCheck" >
+    update s_sensation_check
+    set sensation_id = #{sensationId,jdbcType=BIGINT},
+      extension_status = #{extensionStatus,jdbcType=INTEGER},
+      authentication_link = #{authenticationLink,jdbcType=VARCHAR},
+      authentication_pic = #{authenticationPic,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=INTEGER},
+      content_type = #{contentType,jdbcType=INTEGER},
+      followers_spread_type = #{followersSpreadType,jdbcType=INTEGER},
+      extension_type = #{extensionType,jdbcType=VARCHAR},
+      followers_num = #{followersNum,jdbcType=INTEGER},
+      total_liked_num = #{totalLikedNum,jdbcType=INTEGER},
+      single_highest_num = #{singleHighestNum,jdbcType=INTEGER},
+      sensation_survey = #{sensationSurvey,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      check_sys_user = #{checkSysUser,jdbcType=BIGINT},
+      refuse_content = #{refuseContent,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getSensationCheckBySensation" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation_check
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+    order by id desc limit 1
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.sensation.SensationCheckVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="extension_status" property="extensionStatus" jdbcType="INTEGER" />
+    <result column="authentication_link" property="authenticationLink" jdbcType="VARCHAR" />
+    <result column="authentication_pic" property="authenticationPic" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="followers_spread_type" property="followersSpreadType" jdbcType="INTEGER" />
+    <result column="extension_type" property="extensionType" jdbcType="VARCHAR" />
+    <result column="followers_num" property="followersNum" jdbcType="INTEGER" />
+    <result column="total_liked_num" property="totalLikedNum" jdbcType="INTEGER" />
+    <result column="single_highest_num" property="singleHighestNum" jdbcType="INTEGER" />
+    <result column="sensation_survey" property="sensationSurvey" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="check_sys_user" property="checkSysUser" jdbcType="BIGINT" />
+    <result column="refuse_content" property="refuseContent" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="check_sys_user_name" property="checkSysUserName" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <select id="findSensationCheckVmList" resultMap="BaseResultMapVm" >
+    select
+     sc.id, sc.sensation_id, sc.extension_status, sc.authentication_link, sc.authentication_pic, sc.check_status,
+    sc.content_type, sc.followers_spread_type, sc.extension_type, sc.followers_num, sc.total_liked_num,
+    sc.single_highest_num, sc.sensation_survey, sc.create_date, sc.check_sys_user, sc.refuse_content, sc.check_date,
+    s.phone, s.nick_name, s.head_pic, us.true_name as check_sys_user_name
+    from s_sensation_check sc
+    left join s_sensation s on s.id = sc.sensation_id
+    left join sys_user us on us.id = sc.check_sys_user
+    where 1=1
+    <if test="sensationId != null" >
+      and sc.sensation_id = #{sensationId,jdbcType=BIGINT}
+    </if>
+    <if test="checkStatus != null" >
+      and sc.check_status = #{checkStatus,jdbcType=INTEGER}
+    </if>
+    ORDER BY sc.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getSensationCheckVmNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from s_sensation_check
+    where 1=1
+    <if test="sensationId != null" >
+      and sensation_id = #{sensationId,jdbcType=BIGINT}
+    </if>
+    <if test="checkStatus != null" >
+      and check_status = #{checkStatus,jdbcType=INTEGER}
+    </if>
+  </select>
+
+</mapper>

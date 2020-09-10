@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.common.ProblemMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.common.Problem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ask_content" property="askContent" jdbcType="VARCHAR" />
+    <result column="answer_content" property="answerContent" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ask_content, answer_content, sort, status, create_sys_user, create_date, modify_sys_user, 
+    modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_problem
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from c_problem
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.common.Problem" useGeneratedKeys="true" keyProperty="id" >
+    insert into c_problem (ask_content, answer_content, sort, 
+      status, create_sys_user, create_date, 
+      modify_sys_user, modify_date)
+    values (#{askContent,jdbcType=VARCHAR}, #{answerContent,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createSysUser,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.common.Problem" useGeneratedKeys="true" keyProperty="id" >
+    insert into c_problem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="askContent != null" >
+        ask_content,
+      </if>
+      <if test="answerContent != null" >
+        answer_content,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="askContent != null" >
+        #{askContent,jdbcType=VARCHAR},
+      </if>
+      <if test="answerContent != null" >
+        #{answerContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.common.Problem" >
+    update c_problem
+    <set >
+      <if test="askContent != null" >
+        ask_content = #{askContent,jdbcType=VARCHAR},
+      </if>
+      <if test="answerContent != null" >
+        answer_content = #{answerContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.common.Problem" >
+    update c_problem
+    set ask_content = #{askContent,jdbcType=VARCHAR},
+      answer_content = #{answerContent,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findProblemList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from c_problem
+    where status = 1
+    ORDER BY sort asc
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.common.ProblemVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ask_content" property="askContent" jdbcType="VARCHAR" />
+    <result column="answer_content" property="answerContent" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_sys_user_name" property="modifySysUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="findProblemVmList" resultMap="BaseResultMapVm">
+    select
+    p.id, p.ask_content, p.answer_content, p.sort, p.status, p.create_sys_user, p.create_date, p.modify_sys_user,
+    p.modify_date,
+    us.true_name as modify_sys_user_name
+    from c_problem p
+    left join sys_user us on us.id = p.modify_sys_user
+     where p.status != 3
+    ORDER BY p.sort asc
+  </select>
+
+
+  <update id="updateStatus">
+    update c_problem
+    set status = #{status,jdbcType=INTEGER},
+    modify_date = #{date,jdbcType=TIMESTAMP},
+    modify_sys_user = #{userId,jdbcType=BIGINT}
+    where id in(${problemIds})
+  </update>
+</mapper>

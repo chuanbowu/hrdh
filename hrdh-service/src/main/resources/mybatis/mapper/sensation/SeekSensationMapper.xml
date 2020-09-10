@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.sensation.SeekSensationMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.sensation.SeekSensation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="total_liked_num" property="totalLikedNum" jdbcType="INTEGER" />
+    <result column="single_highest_num" property="singleHighestNum" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="followers_type" property="followersType" jdbcType="INTEGER" />
+    <result column="followers_spread_type" property="followersSpreadType" jdbcType="INTEGER" />
+    <result column="praised_type" property="praisedType" jdbcType="INTEGER" />
+    <result column="screen_type" property="screenType" jdbcType="INTEGER" />
+    <result column="extension_type" property="extensionType" jdbcType="INTEGER" />
+    <result column="platform_type" property="platformType" jdbcType="INTEGER" />
+    <result column="ensation_survey" property="ensationSurvey" jdbcType="VARCHAR" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nick_name, head_pic, total_liked_num, single_highest_num, content_type, followers_type, 
+    followers_spread_type, praised_type, screen_type, extension_type, platform_type, 
+    ensation_survey, create_sys_user, create_date, modify_sys_user, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_seek_sensation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_seek_sensation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.sensation.SeekSensation" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_seek_sensation (nick_name, head_pic, total_liked_num, 
+      single_highest_num, content_type, followers_type, 
+      followers_spread_type, praised_type, screen_type, 
+      extension_type, platform_type, ensation_survey, 
+      create_sys_user, create_date, modify_sys_user, 
+      modify_date)
+    values (#{nickName,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR}, #{totalLikedNum,jdbcType=INTEGER}, 
+      #{singleHighestNum,jdbcType=INTEGER}, #{contentType,jdbcType=INTEGER}, #{followersType,jdbcType=INTEGER}, 
+      #{followersSpreadType,jdbcType=INTEGER}, #{praisedType,jdbcType=INTEGER}, #{screenType,jdbcType=INTEGER}, 
+      #{extensionType,jdbcType=INTEGER}, #{platformType,jdbcType=INTEGER}, #{ensationSurvey,jdbcType=VARCHAR}, 
+      #{createSysUser,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{modifySysUser,jdbcType=BIGINT}, 
+      #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.sensation.SeekSensation" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_seek_sensation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headPic != null" >
+        head_pic,
+      </if>
+      <if test="totalLikedNum != null" >
+        total_liked_num,
+      </if>
+      <if test="singleHighestNum != null" >
+        single_highest_num,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="followersType != null" >
+        followers_type,
+      </if>
+      <if test="followersSpreadType != null" >
+        followers_spread_type,
+      </if>
+      <if test="praisedType != null" >
+        praised_type,
+      </if>
+      <if test="screenType != null" >
+        screen_type,
+      </if>
+      <if test="extensionType != null" >
+        extension_type,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="ensationSurvey != null" >
+        ensation_survey,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLikedNum != null" >
+        #{totalLikedNum,jdbcType=INTEGER},
+      </if>
+      <if test="singleHighestNum != null" >
+        #{singleHighestNum,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="followersType != null" >
+        #{followersType,jdbcType=INTEGER},
+      </if>
+      <if test="followersSpreadType != null" >
+        #{followersSpreadType,jdbcType=INTEGER},
+      </if>
+      <if test="praisedType != null" >
+        #{praisedType,jdbcType=INTEGER},
+      </if>
+      <if test="screenType != null" >
+        #{screenType,jdbcType=INTEGER},
+      </if>
+      <if test="extensionType != null" >
+        #{extensionType,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="ensationSurvey != null" >
+        #{ensationSurvey,jdbcType=VARCHAR},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.sensation.SeekSensation" >
+    update s_seek_sensation
+    <set >
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        head_pic = #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLikedNum != null" >
+        total_liked_num = #{totalLikedNum,jdbcType=INTEGER},
+      </if>
+      <if test="singleHighestNum != null" >
+        single_highest_num = #{singleHighestNum,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="followersType != null" >
+        followers_type = #{followersType,jdbcType=INTEGER},
+      </if>
+      <if test="followersSpreadType != null" >
+        followers_spread_type = #{followersSpreadType,jdbcType=INTEGER},
+      </if>
+      <if test="praisedType != null" >
+        praised_type = #{praisedType,jdbcType=INTEGER},
+      </if>
+      <if test="screenType != null" >
+        screen_type = #{screenType,jdbcType=INTEGER},
+      </if>
+      <if test="extensionType != null" >
+        extension_type = #{extensionType,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        platform_type = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="ensationSurvey != null" >
+        ensation_survey = #{ensationSurvey,jdbcType=VARCHAR},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.sensation.SeekSensation" >
+    update s_seek_sensation
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      head_pic = #{headPic,jdbcType=VARCHAR},
+      total_liked_num = #{totalLikedNum,jdbcType=INTEGER},
+      single_highest_num = #{singleHighestNum,jdbcType=INTEGER},
+      content_type = #{contentType,jdbcType=INTEGER},
+      followers_type = #{followersType,jdbcType=INTEGER},
+      followers_spread_type = #{followersSpreadType,jdbcType=INTEGER},
+      praised_type = #{praisedType,jdbcType=INTEGER},
+      screen_type = #{screenType,jdbcType=INTEGER},
+      extension_type = #{extensionType,jdbcType=INTEGER},
+      platform_type = #{platformType,jdbcType=INTEGER},
+      ensation_survey = #{ensationSurvey,jdbcType=VARCHAR},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

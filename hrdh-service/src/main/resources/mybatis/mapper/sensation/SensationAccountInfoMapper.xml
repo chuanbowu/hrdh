@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.sensation.SensationAccountInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.sensation.SensationAccountInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="info_type" property="infoType" jdbcType="INTEGER" />
+    <result column="valid_price" property="validPrice" jdbcType="DOUBLE" />
+    <result column="info_num" property="infoNum" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sensation_id, info_type, valid_price, info_num, status, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_sensation_account_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_sensation_account_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.sensation.SensationAccountInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_account_info (sensation_id, info_type, valid_price, 
+      info_num, status, create_date
+      )
+    values (#{sensationId,jdbcType=BIGINT}, #{infoType,jdbcType=INTEGER}, #{validPrice,jdbcType=DOUBLE}, 
+      #{infoNum,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.sensation.SensationAccountInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_account_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        sensation_id,
+      </if>
+      <if test="infoType != null" >
+        info_type,
+      </if>
+      <if test="validPrice != null" >
+        valid_price,
+      </if>
+      <if test="infoNum != null" >
+        info_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="infoType != null" >
+        #{infoType,jdbcType=INTEGER},
+      </if>
+      <if test="validPrice != null" >
+        #{validPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="infoNum != null" >
+        #{infoNum,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.sensation.SensationAccountInfo" >
+    update s_sensation_account_info
+    <set >
+      <if test="sensationId != null" >
+        sensation_id = #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="infoType != null" >
+        info_type = #{infoType,jdbcType=INTEGER},
+      </if>
+      <if test="validPrice != null" >
+        valid_price = #{validPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="infoNum != null" >
+        info_num = #{infoNum,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.sensation.SensationAccountInfo" >
+    update s_sensation_account_info
+    set sensation_id = #{sensationId,jdbcType=BIGINT},
+      info_type = #{infoType,jdbcType=INTEGER},
+      valid_price = #{validPrice,jdbcType=DOUBLE},
+      info_num = #{infoNum,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.sensation.SensationAccountInfoVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="info_type" property="infoType" jdbcType="INTEGER" />
+    <result column="valid_price" property="validPrice" jdbcType="DOUBLE" />
+    <result column="info_num" property="infoNum" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+
+    <result column="day_price" property="dayPrice" jdbcType="DOUBLE" />
+    <result column="day_estimated_price" property="dayEstimatedPrice" jdbcType="DOUBLE" />
+    <result column="month_price" property="monthPrice" jdbcType="DOUBLE" />
+    <result column="month_estimated_price" property="monthEstimatedPrice" jdbcType="DOUBLE" />
+    <result column="whole_price" property="wholePrice" jdbcType="DOUBLE" />
+    <result column="whole_estimated_price" property="wholeEstimatedPrice" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <select id="getStatistics" resultMap="BaseResultMapVm">
+  SELECT
+  SUM(IF(info_type = 1, info_num, 0)) as whole_price,
+  SUM(IF(info_type = 4, info_num, 0)) as whole_estimated_price,
+
+  (SELECT IFNULL(sum(info_num), 0) from s_sensation_account_info where info_type = 1 and status = 1
+  and DATE_FORMAT(create_date ,'%Y-%m-%d') = DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m-%d')) as day_price,
+
+  (SELECT IFNULL(sum(info_num), 0) from s_sensation_account_info where info_type = 4 and status = 1
+  and DATE_FORMAT(create_date ,'%Y-%m-%d') = DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m-%d')) as day_estimated_price,
+
+  (SELECT IFNULL(sum(info_num), 0) from s_sensation_account_info where info_type = 1 and status = 1
+  and DATE_FORMAT(create_date ,'%Y-%m') = DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m')) as month_price,
+
+  (SELECT IFNULL(sum(info_num), 0) from s_sensation_account_info where info_type = 4 and status = 1
+  and DATE_FORMAT(create_date ,'%Y-%m') = DATE_FORMAT(#{date,jdbcType=TIMESTAMP},'%Y-%m')) as month_estimated_price
+
+  from s_sensation_account_info
+  where status = 1
+  </select>
+
+
+
+
+</mapper>

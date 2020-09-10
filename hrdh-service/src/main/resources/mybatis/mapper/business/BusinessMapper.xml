@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.business.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.business.Business" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_address" property="shopAddress" jdbcType="VARCHAR" />
+    <result column="partner_id" property="partnerId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="baby_description" property="babyDescription" jdbcType="DOUBLE" />
+    <result column="seller_services" property="sellerServices" jdbcType="DOUBLE" />
+    <result column="logistics_service" property="logisticsService" jdbcType="DOUBLE" />
+    <result column="grade_type" property="gradeType" jdbcType="INTEGER" />
+    <result column="reputation_type" property="reputationType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+    <result column="customer_we_chat_pic" property="customerWeChatPic" jdbcType="VARCHAR" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, nick_name, head_pic, password, shop_name, shop_address, partner_id, code,
+    consignee_name, consignee_address, baby_description, seller_services, logistics_service,
+    grade_type, reputation_type, status, customer_phone, customer_we_chat_pic, login_date,
+    login_ip, create_sys_user, create_date, modify_sys_user, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from b_business
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from b_business
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.business.Business" useGeneratedKeys="true" keyProperty="id" >
+    insert into b_business (phone, nick_name, head_pic,
+    password, shop_name, shop_address,
+    partner_id, code, consignee_name,
+    consignee_address, baby_description, seller_services,
+    logistics_service, grade_type, reputation_type,
+    status, customer_phone, customer_we_chat_pic,
+    login_date, login_ip, create_sys_user,
+    create_date, modify_sys_user, modify_date
+    )
+    values (#{phone,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR},
+    #{password,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{shopAddress,jdbcType=VARCHAR},
+    #{partnerId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{consigneeName,jdbcType=VARCHAR},
+    #{consigneeAddress,jdbcType=VARCHAR}, #{babyDescription,jdbcType=DOUBLE}, #{sellerServices,jdbcType=DOUBLE},
+    #{logisticsService,jdbcType=DOUBLE}, #{gradeType,jdbcType=INTEGER}, #{reputationType,jdbcType=INTEGER},
+    #{status,jdbcType=INTEGER}, #{customerPhone,jdbcType=VARCHAR}, #{customerWeChatPic,jdbcType=VARCHAR},
+    #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}, #{createSysUser,jdbcType=BIGINT},
+    #{createDate,jdbcType=TIMESTAMP}, #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.business.Business" useGeneratedKeys="true" keyProperty="id" >
+    insert into b_business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headPic != null" >
+        head_pic,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="shopAddress != null" >
+        shop_address,
+      </if>
+      <if test="partnerId != null" >
+        partner_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name,
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address,
+      </if>
+      <if test="babyDescription != null" >
+        baby_description,
+      </if>
+      <if test="sellerServices != null" >
+        seller_services,
+      </if>
+      <if test="logisticsService != null" >
+        logistics_service,
+      </if>
+      <if test="gradeType != null" >
+        grade_type,
+      </if>
+      <if test="reputationType != null" >
+        reputation_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="customerPhone != null" >
+        customer_phone,
+      </if>
+      <if test="customerWeChatPic != null" >
+        customer_we_chat_pic,
+      </if>
+      <if test="loginDate != null" >
+        login_date,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddress != null" >
+        #{shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerId != null" >
+        #{partnerId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null" >
+        #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddress != null" >
+        #{consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="babyDescription != null" >
+        #{babyDescription,jdbcType=DOUBLE},
+      </if>
+      <if test="sellerServices != null" >
+        #{sellerServices,jdbcType=DOUBLE},
+      </if>
+      <if test="logisticsService != null" >
+        #{logisticsService,jdbcType=DOUBLE},
+      </if>
+      <if test="gradeType != null" >
+        #{gradeType,jdbcType=INTEGER},
+      </if>
+      <if test="reputationType != null" >
+        #{reputationType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="customerPhone != null" >
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerWeChatPic != null" >
+        #{customerWeChatPic,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null" >
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.business.Business" >
+    update b_business
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        head_pic = #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddress != null" >
+        shop_address = #{shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerId != null" >
+        partner_id = #{partnerId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="babyDescription != null" >
+        baby_description = #{babyDescription,jdbcType=DOUBLE},
+      </if>
+      <if test="sellerServices != null" >
+        seller_services = #{sellerServices,jdbcType=DOUBLE},
+      </if>
+      <if test="logisticsService != null" >
+        logistics_service = #{logisticsService,jdbcType=DOUBLE},
+      </if>
+      <if test="gradeType != null" >
+        grade_type = #{gradeType,jdbcType=INTEGER},
+      </if>
+      <if test="reputationType != null" >
+        reputation_type = #{reputationType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="customerPhone != null" >
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerWeChatPic != null" >
+        customer_we_chat_pic = #{customerWeChatPic,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null" >
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.business.Business" >
+    update b_business
+    set phone = #{phone,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_pic = #{headPic,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_address = #{shopAddress,jdbcType=VARCHAR},
+      partner_id = #{partnerId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      baby_description = #{babyDescription,jdbcType=DOUBLE},
+      seller_services = #{sellerServices,jdbcType=DOUBLE},
+      logistics_service = #{logisticsService,jdbcType=DOUBLE},
+      grade_type = #{gradeType,jdbcType=INTEGER},
+      reputation_type = #{reputationType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_we_chat_pic = #{customerWeChatPic,jdbcType=VARCHAR},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findBusinessByPhoneNoPassword" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_business
+    where phone = #{phone, jdbcType=VARCHAR}
+    and password = #{password,jdbcType=VARCHAR}
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.business.BusinessVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_address" property="shopAddress" jdbcType="VARCHAR" />
+    <result column="partner_id" property="partnerId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="baby_description" property="babyDescription" jdbcType="DOUBLE" />
+    <result column="seller_services" property="sellerServices" jdbcType="DOUBLE" />
+    <result column="logistics_service" property="logisticsService" jdbcType="DOUBLE" />
+    <result column="grade_type" property="gradeType" jdbcType="INTEGER" />
+    <result column="reputation_type" property="reputationType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+    <result column="customer_we_chat_pic" property="customerWeChatPic" jdbcType="VARCHAR" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_sys_user_name" property="modifySysUserName" jdbcType="VARCHAR" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="findBusinessVmList" resultMap="BaseResultMapVm">
+    select
+    b.id, b.phone, b.nick_name, b.head_pic, b.shop_name, b.shop_address, b.partner_id, b.code,
+    b.consignee_name, b.consignee_address, b.baby_description, b.seller_services, b.logistics_service,
+    b.grade_type, b.reputation_type, b.status, b.customer_phone, b.customer_we_chat_pic, b.login_date,
+    b.login_ip, b.modify_sys_user, b.modify_date,
+    us.true_name as modify_sys_user_name
+    from b_business b
+    left join sys_user us on us.id = b.modify_sys_user
+    where b.status != 3
+    <if test="gradeType != null" >
+      and b.grade_type = #{gradeType,jdbcType=INTEGER}
+    </if>
+    <if test="phone != null and phone != ''">
+      and instr(b.phone, #{phone, jdbcType=VARCHAR})
+    </if>
+    <if test="nickName != null and nickName != ''">
+      and instr(b.nick_name, #{nickName, jdbcType=VARCHAR})
+    </if>
+    ORDER BY b.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getBusinessVmNum" resultType="java.lang.Integer">
+    select
+    count(b.id)
+    from b_business b
+    where b.status != 3
+    <if test="gradeType != null" >
+      and b.grade_type = #{gradeType,jdbcType=INTEGER}
+    </if>
+    <if test="phone != null and phone != ''">
+      and instr(b.phone, #{phone, jdbcType=VARCHAR})
+    </if>
+    <if test="nickName != null and nickName != ''">
+      and instr(b.nick_name, #{nickName, jdbcType=VARCHAR})
+    </if>
+  </select>
+
+  <update id="updateStatus">
+    update b_business
+    set status = #{status,jdbcType=INTEGER},
+    modify_date = #{date,jdbcType=TIMESTAMP},
+    modify_sys_user = #{userId,jdbcType=BIGINT}
+    where id in(${businessIds})
+  </update>
+
+  <select id="getBusinessPhone" resultType="java.lang.Integer">
+    select
+    count(id)
+    from b_business
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+</mapper>

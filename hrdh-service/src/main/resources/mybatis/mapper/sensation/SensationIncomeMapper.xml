@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.sensation.SensationIncomeMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.sensation.SensationIncome" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="commission_price" property="commissionPrice" jdbcType="DOUBLE" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="income_date" property="incomeDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="tk_create_date" property="tkCreateDate" jdbcType="TIMESTAMP" />
+    <result column="last_handle_date" property="lastHandleDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sensation_id, goods_id, order_id, commission_price, type, income_date, modify_date,
+    tk_create_date, last_handle_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation_income
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_sensation_income
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.sensation.SensationIncome" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_income (sensation_id, goods_id, order_id,
+    commission_price, type, income_date,
+    modify_date, tk_create_date, last_handle_date
+    )
+    values (#{sensationId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR},
+    #{commissionPrice,jdbcType=DOUBLE}, #{type,jdbcType=INTEGER}, #{incomeDate,jdbcType=TIMESTAMP},
+    #{modifyDate,jdbcType=TIMESTAMP}, #{tkCreateDate,jdbcType=TIMESTAMP}, #{lastHandleDate,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.sensation.SensationIncome" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_income
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        sensation_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="commissionPrice != null" >
+        commission_price,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="incomeDate != null" >
+        income_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="tkCreateDate != null" >
+        tk_create_date,
+      </if>
+      <if test="lastHandleDate != null" >
+        last_handle_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionPrice != null" >
+        #{commissionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="incomeDate != null" >
+        #{incomeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tkCreateDate != null" >
+        #{tkCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastHandleDate != null" >
+        #{lastHandleDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.sensation.SensationIncome" >
+    update s_sensation_income
+    <set >
+      <if test="sensationId != null" >
+        sensation_id = #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionPrice != null" >
+        commission_price = #{commissionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="incomeDate != null" >
+        income_date = #{incomeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tkCreateDate != null" >
+        tk_create_date = #{tkCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastHandleDate != null" >
+        last_handle_date = #{lastHandleDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.sensation.SensationIncome" >
+    update s_sensation_income
+    set sensation_id = #{sensationId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      commission_price = #{commissionPrice,jdbcType=DOUBLE},
+      type = #{type,jdbcType=INTEGER},
+      income_date = #{incomeDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      tk_create_date = #{tkCreateDate,jdbcType=TIMESTAMP},
+      last_handle_date = #{lastHandleDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.sensation.SensationIncomeVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="business_title" property="businessTitle" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="commission_price" property="commissionPrice" jdbcType="DOUBLE" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="income_date" property="incomeDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findSensationIncomeVmListBySensationId" resultMap="BaseResultMapVm">
+    select
+    si.id, si.sensation_id, si.goods_id, si.order_id, si.commission_price, si.type, si.income_date, si.modify_date,
+    cg.business_title
+    from s_sensation_income si
+    left join b_commission_goods cg on cg.id = si.goods_id
+    where si.sensation_id = #{sensationId,jdbcType=BIGINT}
+    ORDER BY si.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getSensationIncomeVmNumBySensationId" resultType="java.lang.Integer">
+    select
+    count(id)
+    from s_sensation_income
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+  </select>
+
+  <select id="findSensationIncomeVmList" resultMap="BaseResultMapVm">
+    select
+    si.id, si.sensation_id, si.goods_id, si.order_id, si.commission_price, si.type, si.income_date, si.modify_date,
+    cg.business_title,
+    s.phone, s.nick_name, s.head_pic
+    from s_sensation_income si
+    left join b_commission_goods cg on cg.id = si.goods_id
+     left join s_sensation s on s.id = si.sensation_id
+    where 1=1
+    <if test="sensationId != null" >
+      and si.sensation_id = #{sensationId,jdbcType=BIGINT}
+    </if>
+    <if test="type != null" >
+      and si.type = #{type,jdbcType=INTEGER}
+    </if>
+    ORDER BY si.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getSensationIncomeVmNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from s_sensation_income
+    where 1=1
+    <if test="sensationId != null" >
+      and sensation_id = #{sensationId,jdbcType=BIGINT}
+    </if>
+    <if test="type != null" >
+      and type = #{type,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="getLastHandleDate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation_income
+    ORDER BY id DESC limit 1
+  </select>
+
+  <select id="getBySensationIdOrGoodsIdOrTradeParentId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation_income
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+    <if test="goodsId != null" >
+      and goods_id = #{goodsId,jdbcType=BIGINT}
+    </if>
+    and order_id = #{tradeParentId,jdbcType=VARCHAR}
+    ORDER BY id DESC limit 1
+  </select>
+
+  <update id="updateLastHandleDate">
+    update s_sensation_income
+    set last_handle_date = #{date,jdbcType=TIMESTAMP}
+    ORDER BY id DESC LIMIT 1
+  </update>
+</mapper>

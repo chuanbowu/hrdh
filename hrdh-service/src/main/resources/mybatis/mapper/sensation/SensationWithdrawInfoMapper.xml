@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.sensation.SensationWithdrawInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.sensation.SensationWithdrawInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="money_price" property="moneyPrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="withdraw_date" property="withdrawDate" jdbcType="TIMESTAMP" />
+    <result column="check_sys_user" property="checkSysUser" jdbcType="BIGINT" />
+    <result column="refuse_content" property="refuseContent" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.flym.hrdh.pojo.sensation.SensationWithdrawInfo" extends="BaseResultMap" >
+    <result column="return_info" property="returnInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sensation_id, account, true_name, money_price, status, withdraw_date, check_sys_user,
+    refuse_content, check_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    return_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from s_sensation_withdraw_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_sensation_withdraw_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.sensation.SensationWithdrawInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_withdraw_info (sensation_id, account, true_name,
+    money_price, status, withdraw_date,
+    check_sys_user, refuse_content, check_date,
+    return_info)
+    values (#{sensationId,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR},
+    #{moneyPrice,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, #{withdrawDate,jdbcType=TIMESTAMP},
+    #{checkSysUser,jdbcType=BIGINT}, #{refuseContent,jdbcType=VARCHAR}, #{checkDate,jdbcType=TIMESTAMP},
+    #{returnInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.sensation.SensationWithdrawInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation_withdraw_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        sensation_id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="moneyPrice != null" >
+        money_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="withdrawDate != null" >
+        withdraw_date,
+      </if>
+      <if test="checkSysUser != null" >
+        check_sys_user,
+      </if>
+      <if test="refuseContent != null" >
+        refuse_content,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="returnInfo != null" >
+        return_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensationId != null" >
+        #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyPrice != null" >
+        #{moneyPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawDate != null" >
+        #{withdrawDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkSysUser != null" >
+        #{checkSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="refuseContent != null" >
+        #{refuseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnInfo != null" >
+        #{returnInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.sensation.SensationWithdrawInfo" >
+    update s_sensation_withdraw_info
+    <set >
+      <if test="sensationId != null" >
+        sensation_id = #{sensationId,jdbcType=BIGINT},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyPrice != null" >
+        money_price = #{moneyPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawDate != null" >
+        withdraw_date = #{withdrawDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkSysUser != null" >
+        check_sys_user = #{checkSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="refuseContent != null" >
+        refuse_content = #{refuseContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnInfo != null" >
+        return_info = #{returnInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.sensation.SensationWithdrawInfo" >
+    update s_sensation_withdraw_info
+    set sensation_id = #{sensationId,jdbcType=BIGINT},
+    account = #{account,jdbcType=VARCHAR},
+    true_name = #{trueName,jdbcType=VARCHAR},
+    money_price = #{moneyPrice,jdbcType=DOUBLE},
+    status = #{status,jdbcType=INTEGER},
+    withdraw_date = #{withdrawDate,jdbcType=TIMESTAMP},
+    check_sys_user = #{checkSysUser,jdbcType=BIGINT},
+    refuse_content = #{refuseContent,jdbcType=VARCHAR},
+    check_date = #{checkDate,jdbcType=TIMESTAMP},
+    return_info = #{returnInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findSensationWithdrawInfoList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from s_sensation_withdraw_info
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+    ORDER BY id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getSensationWithdrawInfoNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from s_sensation_withdraw_info
+    where sensation_id = #{sensationId,jdbcType=BIGINT}
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.sensation.SensationWithdrawInfoVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sensation_id" property="sensationId" jdbcType="BIGINT" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="money_price" property="moneyPrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="withdraw_date" property="withdrawDate" jdbcType="TIMESTAMP" />
+    <result column="return_info" property="returnInfo" jdbcType="VARCHAR" />
+
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="check_sys_user" property="checkSysUser" jdbcType="BIGINT" />
+    <result column="refuse_content" property="refuseContent" jdbcType="VARCHAR" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="check_sys_user_name" property="checkSysUserName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findSensationWithdrawInfoVmList" resultMap="BaseResultMapVm" >
+    select
+    sw.id, sw.sensation_id, sw.account, sw.true_name, sw.money_price, sw.status, sw.withdraw_date,
+    sw.check_sys_user, sw.refuse_content, sw.check_date, us.true_name as check_sys_user_name,
+    s.phone, s.nick_name, s.head_pic
+    from s_sensation_withdraw_info sw
+    left join s_sensation s on s.id = sw.sensation_id
+    left join sys_user us on us.id = sw.check_sys_user
+    where 1=1
+    <if test="sensationId != null" >
+      and sw.sensation_id = #{sensationId,jdbcType=BIGINT}
+    </if>
+    <if test="status != null" >
+      and sw.status = #{status,jdbcType=INTEGER}
+    </if>
+    ORDER BY sw.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getSensationWithdrawInfoVmNum" resultType="java.lang.Integer">
+    select
+    count(id)
+    from s_sensation_withdraw_info
+    where 1=1
+    <if test="sensationId != null" >
+      and sensation_id = #{sensationId,jdbcType=BIGINT}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>

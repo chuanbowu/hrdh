@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flym.hrdh.mapper.single.sensation.SensationMapper" >
+  <resultMap id="BaseResultMap" type="com.flym.hrdh.pojo.sensation.Sensation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="we_chat" property="weChat" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="provincial_address" property="provincialAddress" jdbcType="VARCHAR" />
+    <result column="extension_status" property="extensionStatus" jdbcType="INTEGER" />
+    <result column="balance_price" property="balancePrice" jdbcType="DOUBLE" />
+    <result column="total_balance_price" property="totalBalancePrice" jdbcType="DOUBLE" />
+    <result column="estimated_revenue_price" property="estimatedRevenuePrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="authentication_link" property="authenticationLink" jdbcType="VARCHAR" />
+    <result column="authentication_pic" property="authenticationPic" jdbcType="VARCHAR" />
+    <result column="followers_num" property="followersNum" jdbcType="INTEGER" />
+    <result column="total_liked_num" property="totalLikedNum" jdbcType="INTEGER" />
+    <result column="single_highest_num" property="singleHighestNum" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="followers_spread_type" property="followersSpreadType" jdbcType="INTEGER" />
+    <result column="extension_type" property="extensionType" jdbcType="VARCHAR" />
+    <result column="sensation_survey" property="sensationSurvey" jdbcType="VARCHAR" />
+    <result column="sensation_type" property="sensationType" jdbcType="INTEGER" />
+    <result column="sensation_status" property="sensationStatus" jdbcType="INTEGER" />
+    <result column="register_date" property="registerDate" jdbcType="TIMESTAMP" />
+    <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_num" property="loginNum" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="relation_id" property="relationId" jdbcType="BIGINT" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, nick_name, head_pic, password, sex, qq, we_chat, province_id, city_id,
+    area_id, provincial_address, extension_status, balance_price, total_balance_price,
+    estimated_revenue_price, status, consignee_name, consignee_address, authentication_link,
+    authentication_pic, followers_num, total_liked_num, single_highest_num, content_type,
+    followers_spread_type, extension_type, sensation_survey, sensation_type, sensation_status,
+    register_date, register_ip, login_date, login_ip, login_num, create_sys_user, create_date,
+    modify_sys_user, modify_date, relation_id, account_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_sensation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flym.hrdh.pojo.sensation.Sensation" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation (phone, nick_name, head_pic,
+    password, sex, qq,
+    we_chat, province_id, city_id,
+    area_id, provincial_address, extension_status,
+    balance_price, total_balance_price, estimated_revenue_price,
+    status, consignee_name, consignee_address,
+    authentication_link, authentication_pic,
+    followers_num, total_liked_num, single_highest_num,
+    content_type, followers_spread_type, extension_type,
+    sensation_survey, sensation_type, sensation_status,
+    register_date, register_ip, login_date,
+    login_ip, login_num, create_sys_user,
+    create_date, modify_sys_user, modify_date,
+    relation_id, account_name)
+    values (#{phone,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR},
+    #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{qq,jdbcType=VARCHAR},
+    #{weChat,jdbcType=VARCHAR}, #{provinceId,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT},
+    #{areaId,jdbcType=BIGINT}, #{provincialAddress,jdbcType=VARCHAR}, #{extensionStatus,jdbcType=INTEGER},
+    #{balancePrice,jdbcType=DOUBLE}, #{totalBalancePrice,jdbcType=DOUBLE}, #{estimatedRevenuePrice,jdbcType=DOUBLE},
+    #{status,jdbcType=INTEGER}, #{consigneeName,jdbcType=VARCHAR}, #{consigneeAddress,jdbcType=VARCHAR},
+    #{authenticationLink,jdbcType=VARCHAR}, #{authenticationPic,jdbcType=VARCHAR},
+    #{followersNum,jdbcType=INTEGER}, #{totalLikedNum,jdbcType=INTEGER}, #{singleHighestNum,jdbcType=INTEGER},
+    #{contentType,jdbcType=INTEGER}, #{followersSpreadType,jdbcType=INTEGER}, #{extensionType,jdbcType=VARCHAR},
+    #{sensationSurvey,jdbcType=VARCHAR}, #{sensationType,jdbcType=INTEGER}, #{sensationStatus,jdbcType=INTEGER},
+    #{registerDate,jdbcType=TIMESTAMP}, #{registerIp,jdbcType=VARCHAR}, #{loginDate,jdbcType=TIMESTAMP},
+    #{loginIp,jdbcType=VARCHAR}, #{loginNum,jdbcType=INTEGER}, #{createSysUser,jdbcType=BIGINT},
+    #{createDate,jdbcType=TIMESTAMP}, #{modifySysUser,jdbcType=BIGINT}, #{modifyDate,jdbcType=TIMESTAMP},
+    #{relationId,jdbcType=BIGINT}, #{accountName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flym.hrdh.pojo.sensation.Sensation" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_sensation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headPic != null" >
+        head_pic,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="weChat != null" >
+        we_chat,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="provincialAddress != null" >
+        provincial_address,
+      </if>
+      <if test="extensionStatus != null" >
+        extension_status,
+      </if>
+      <if test="balancePrice != null" >
+        balance_price,
+      </if>
+      <if test="totalBalancePrice != null" >
+        total_balance_price,
+      </if>
+      <if test="estimatedRevenuePrice != null" >
+        estimated_revenue_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name,
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address,
+      </if>
+      <if test="authenticationLink != null" >
+        authentication_link,
+      </if>
+      <if test="authenticationPic != null" >
+        authentication_pic,
+      </if>
+      <if test="followersNum != null" >
+        followers_num,
+      </if>
+      <if test="totalLikedNum != null" >
+        total_liked_num,
+      </if>
+      <if test="singleHighestNum != null" >
+        single_highest_num,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="followersSpreadType != null" >
+        followers_spread_type,
+      </if>
+      <if test="extensionType != null" >
+        extension_type,
+      </if>
+      <if test="sensationSurvey != null" >
+        sensation_survey,
+      </if>
+      <if test="sensationType != null" >
+        sensation_type,
+      </if>
+      <if test="sensationStatus != null" >
+        sensation_status,
+      </if>
+      <if test="registerDate != null" >
+        register_date,
+      </if>
+      <if test="registerIp != null" >
+        register_ip,
+      </if>
+      <if test="loginDate != null" >
+        login_date,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="loginNum != null" >
+        login_num,
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="relationId != null" >
+        relation_id,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weChat != null" >
+        #{weChat,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="provincialAddress != null" >
+        #{provincialAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionStatus != null" >
+        #{extensionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="balancePrice != null" >
+        #{balancePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="totalBalancePrice != null" >
+        #{totalBalancePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedRevenuePrice != null" >
+        #{estimatedRevenuePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="consigneeName != null" >
+        #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddress != null" >
+        #{consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationLink != null" >
+        #{authenticationLink,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationPic != null" >
+        #{authenticationPic,jdbcType=VARCHAR},
+      </if>
+      <if test="followersNum != null" >
+        #{followersNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalLikedNum != null" >
+        #{totalLikedNum,jdbcType=INTEGER},
+      </if>
+      <if test="singleHighestNum != null" >
+        #{singleHighestNum,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="followersSpreadType != null" >
+        #{followersSpreadType,jdbcType=INTEGER},
+      </if>
+      <if test="extensionType != null" >
+        #{extensionType,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationSurvey != null" >
+        #{sensationSurvey,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationType != null" >
+        #{sensationType,jdbcType=INTEGER},
+      </if>
+      <if test="sensationStatus != null" >
+        #{sensationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerIp != null" >
+        #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null" >
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginNum != null" >
+        #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relationId != null" >
+        #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flym.hrdh.pojo.sensation.Sensation" >
+    update s_sensation
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPic != null" >
+        head_pic = #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weChat != null" >
+        we_chat = #{weChat,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="provincialAddress != null" >
+        provincial_address = #{provincialAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionStatus != null" >
+        extension_status = #{extensionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationLink != null" >
+        authentication_link = #{authenticationLink,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationPic != null" >
+        authentication_pic = #{authenticationPic,jdbcType=VARCHAR},
+      </if>
+      <if test="followersNum != null" >
+        followers_num = #{followersNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalLikedNum != null" >
+        total_liked_num = #{totalLikedNum,jdbcType=INTEGER},
+      </if>
+      <if test="singleHighestNum != null" >
+        single_highest_num = #{singleHighestNum,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="followersSpreadType != null" >
+        followers_spread_type = #{followersSpreadType,jdbcType=INTEGER},
+      </if>
+      <if test="extensionType != null" >
+        extension_type = #{extensionType,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationSurvey != null" >
+        sensation_survey = #{sensationSurvey,jdbcType=VARCHAR},
+      </if>
+      <if test="sensationType != null" >
+        sensation_type = #{sensationType,jdbcType=INTEGER},
+      </if>
+      <if test="sensationStatus != null" >
+        sensation_status = #{sensationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="registerDate != null" >
+        register_date = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerIp != null" >
+        register_ip = #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null" >
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginNum != null" >
+        login_num = #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="createSysUser != null" >
+        create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifySysUser != null" >
+        modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      </if>
+      <if test="modifyDate != null" >
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relationId != null" >
+        relation_id = #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flym.hrdh.pojo.sensation.Sensation" >
+    update s_sensation
+    set phone = #{phone,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_pic = #{headPic,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=VARCHAR},
+      we_chat = #{weChat,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      city_id = #{cityId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      provincial_address = #{provincialAddress,jdbcType=VARCHAR},
+      extension_status = #{extensionStatus,jdbcType=INTEGER},
+      balance_price = #{balancePrice,jdbcType=DOUBLE},
+      total_balance_price = #{totalBalancePrice,jdbcType=DOUBLE},
+      estimated_revenue_price = #{estimatedRevenuePrice,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      authentication_link = #{authenticationLink,jdbcType=VARCHAR},
+      authentication_pic = #{authenticationPic,jdbcType=VARCHAR},
+      followers_num = #{followersNum,jdbcType=INTEGER},
+      total_liked_num = #{totalLikedNum,jdbcType=INTEGER},
+      single_highest_num = #{singleHighestNum,jdbcType=INTEGER},
+      content_type = #{contentType,jdbcType=INTEGER},
+      followers_spread_type = #{followersSpreadType,jdbcType=INTEGER},
+      extension_type = #{extensionType,jdbcType=VARCHAR},
+      sensation_survey = #{sensationSurvey,jdbcType=VARCHAR},
+      sensation_type = #{sensationType,jdbcType=INTEGER},
+      sensation_status = #{sensationStatus,jdbcType=INTEGER},
+      register_date = #{registerDate,jdbcType=TIMESTAMP},
+      register_ip = #{registerIp,jdbcType=VARCHAR},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_num = #{loginNum,jdbcType=INTEGER},
+      create_sys_user = #{createSysUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_sys_user = #{modifySysUser,jdbcType=BIGINT},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      relation_id = #{relationId,jdbcType=BIGINT},
+      account_name = #{accountName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getSensationPhoneNum" resultType="java.lang.Integer">
+    select count(id)
+    from s_sensation
+    where phone = #{phone, jdbcType=VARCHAR}
+  </select>
+
+  <select id="findSensationByPhoneNoPassword" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from s_sensation
+    where phone = #{phone, jdbcType=VARCHAR}
+    <if test="password != null and password != ''">
+      and password = #{password,jdbcType=VARCHAR}
+    </if>
+    and sensation_type = 1
+  </select>
+
+  <resultMap id="BaseResultMapVm" type="com.flym.hrdh.api.model.sensation.SensationVm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="we_chat" property="weChat" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="provincial_address" property="provincialAddress" jdbcType="VARCHAR" />
+    <result column="extension_status" property="extensionStatus" jdbcType="INTEGER" />
+    <result column="balance_price" property="balancePrice" jdbcType="DOUBLE" />
+    <result column="total_balance_price" property="totalBalancePrice" jdbcType="DOUBLE" />
+    <result column="estimated_revenue_price" property="estimatedRevenuePrice" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="authentication_link" property="authenticationLink" jdbcType="VARCHAR" />
+    <result column="authentication_pic" property="authenticationPic" jdbcType="VARCHAR" />
+    <result column="followers_num" property="followersNum" jdbcType="INTEGER" />
+    <result column="total_liked_num" property="totalLikedNum" jdbcType="INTEGER" />
+    <result column="single_highest_num" property="singleHighestNum" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="followers_spread_type" property="followersSpreadType" jdbcType="INTEGER" />
+    <result column="extension_type" property="extensionType" jdbcType="VARCHAR" />
+    <result column="sensation_survey" property="sensationSurvey" jdbcType="VARCHAR" />
+    <result column="sensation_type" property="sensationType" jdbcType="INTEGER" />
+    <result column="sensation_status" property="sensationStatus" jdbcType="INTEGER" />
+    <result column="register_date" property="registerDate" jdbcType="TIMESTAMP" />
+    <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_num" property="loginNum" jdbcType="INTEGER" />
+    <result column="create_sys_user" property="createSysUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_sys_user" property="modifySysUser" jdbcType="BIGINT" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findSensationVmListByType" resultMap="BaseResultMapVm">
+    select
+    s.id, s.phone, s.nick_name, s.head_pic, s.sex, s.qq, s.we_chat, s.province_id, s.city_id,
+    s.area_id, s.provincial_address, s.extension_status, s.balance_price, s.total_balance_price,
+    s.status, s.consignee_name, s.consignee_address, s.authentication_link, s.authentication_pic,
+    s.followers_num, s.total_liked_num, s.single_highest_num, s.content_type, s.followers_spread_type,
+    s.extension_type, s.sensation_survey, s.sensation_type, s.sensation_status,
+    p.name as province_name
+    from s_sensation s
+    left join c_province p on p.cid = s.province_id
+    where 1=1
+    <include refid="find_sensation_vm_list_by_type" />
+    ORDER BY s.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <sql id="find_sensation_vm_list_by_type" >
+    and s.sensation_status = 1
+    and s.status = 5
+    <if test="contentType != null" >
+      and s.content_type = #{contentType,jdbcType=INTEGER}
+    </if>
+    /*粉丝数量:1、10W以内、2-10W-30W、3-30W-100W、4-100W-300W、5-300W-500W、6-500W以上*/
+    <if test="followersType != null" >
+      <if test="followersType == 1" >
+        and s.followers_num &lt; 100000
+      </if>
+      <if test="followersType == 2" >
+        and s.followers_num &gt;= 100000 and s.followers_num &lt; 300000
+      </if>
+      <if test="followersType == 3" >
+        and s.followers_num &gt;= 300000 and s.followers_num &lt; 1000000
+      </if>
+      <if test="followersType == 4" >
+        and s.followers_num &gt;= 1000000 and s.followers_num &lt; 3000000
+      </if>
+      <if test="followersType == 5" >
+        and s.followers_num &gt;= 3000000 and s.followers_num &lt; 5000000
+      </if>
+      <if test="followersType == 6" >
+        and s.followers_num &gt;= 5000000
+      </if>
+    </if>
+    <if test="followersSpreadType != null" >
+      and s.followers_spread_type = #{followersSpreadType,jdbcType=INTEGER}
+    </if>
+    /*获赞总量：1、10W以内、2-10W-30W、3-30W-100W、4-100W-300W、5-300W-500W、6-500W以上*/
+    <if test="totalLikedType != null" >
+      <if test="totalLikedType == 1" >
+        and s.total_liked_num &lt; 100000
+      </if>
+      <if test="totalLikedType == 2" >
+        and s.total_liked_num &gt;= 100000 and s.total_liked_num &lt; 300000
+      </if>
+      <if test="totalLikedType == 3" >
+        and s.total_liked_num &gt;= 300000 and s.total_liked_num &lt; 1000000
+      </if>
+      <if test="totalLikedType == 4" >
+        and s.total_liked_num &gt;= 1000000 and s.total_liked_num &lt; 3000000
+      </if>
+      <if test="totalLikedType == 5" >
+        and s.total_liked_num &gt;= 3000000 and s.total_liked_num &lt; 5000000
+      </if>
+      <if test="totalLikedType == 6" >
+        and s.total_liked_num &gt;= 5000000
+      </if>
+    </if>
+    <if test="provinceId != null" >
+      and s.province_id = #{provinceId,jdbcType=BIGINT}
+    </if>
+    <if test="extensionType != null">
+      and (
+      <foreach collection="extensionType" item="item" index="index" separator="or">
+        instr(s.extension_type, #{item, jdbcType=VARCHAR})
+      </foreach >
+      )
+    </if>
+
+  </sql>
+
+  <select id="getSensationVmListByTypeNum" resultType="java.lang.Integer">
+    select
+    count(s.id)
+    from s_sensation s
+    left join c_province p on p.cid = s.province_id
+    where 1=1
+    <include refid="find_sensation_vm_list_by_type" />
+  </select>
+
+  <select id="findSensationVmListByNickName" resultMap="BaseResultMapVm">
+    select
+    s.id, s.phone, s.nick_name, s.head_pic, s.sex, s.qq, s.we_chat, s.province_id, s.city_id,
+    s.area_id, s.provincial_address, s.extension_status, s.balance_price, s.total_balance_price,
+    s.status, s.consignee_name, s.consignee_address, s.authentication_link, s.authentication_pic,
+    s.followers_num, s.total_liked_num, s.single_highest_num, s.content_type, s.followers_spread_type,
+    s.extension_type, s.sensation_survey, s.sensation_type, s.sensation_status,
+    p.name as province_name
+    from s_sensation s
+    left join c_province p on p.cid = s.province_id
+    where s.sensation_status = 1
+    and s.status = 5
+    <if test="nickName != null">
+      and instr(s.nick_name, #{nickName, jdbcType=INTEGER})
+    </if>
+    ORDER BY s.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <select id="getSensationVmListByNickNameNum" resultType="java.lang.Integer">
+    select
+    count(s.id)
+    from s_sensation s
+    left join c_province p on p.cid = s.province_id
+    where s.sensation_status = 1
+    and s.status = 5
+    <if test="nickName != null">
+      and instr(s.nick_name, #{nickName, jdbcType=INTEGER})
+    </if>
+  </select>
+
+  <select id="getSensationVmById" resultMap="BaseResultMapVm">
+    select
+    s.id, s.phone, s.nick_name, s.head_pic, s.sex, s.qq, s.we_chat, s.province_id, s.city_id,
+    s.area_id, s.provincial_address, s.extension_status, s.balance_price, s.total_balance_price,
+    s.status, s.consignee_name, s.consignee_address, s.authentication_link, s.authentication_pic,
+    s.followers_num, s.total_liked_num, s.single_highest_num, s.content_type, s.followers_spread_type,
+    s.extension_type, s.sensation_survey, s.sensation_type, s.sensation_status, s.create_date, s.estimated_revenue_price,
+    p.name as province_name, ci.name as city_name, a.name as area_name
+    from s_sensation s
+    left join c_province p on p.cid = s.province_id
+    left join c_city ci on ci.cid = s.city_id
+    left join c_area a on a.cid = s.area_id
+    where s.id = #{sensationId,jdbcType=BIGINT}
+  </select>
+
+  <select id="findSensationVmList" resultMap="BaseResultMapVm">
+    select
+    s.id, s.phone, s.nick_name, s.head_pic, s.sex, s.qq, s.we_chat, s.province_id, s.city_id,
+    s.area_id, s.provincial_address, s.balance_price, s.total_balance_price,
+    s.status, s.consignee_name, s.consignee_address,
+    s.sensation_type, s.sensation_status, s.create_date, s.estimated_revenue_price,
+    p.name as province_name, ci.name as city_name, a.name as area_name,
+    if(s.status = 3 or s.status = 4, se.extension_status, s.extension_status) as extension_status,
+    if(s.status = 3 or s.status = 4, se.authentication_link, s.authentication_link) as authentication_link,
+    if(s.status = 3 or s.status = 4, se.authentication_pic, s.authentication_pic) as authentication_pic,
+    if(s.status = 3 or s.status = 4, se.content_type, s.content_type) as content_type,
+    if(s.status = 3 or s.status = 4, se.followers_spread_type, s.followers_spread_type) as followers_spread_type,
+    if(s.status = 3 or s.status = 4, se.extension_type, s.extension_type) as extension_type,
+    if(s.status = 3 or s.status = 4, se.followers_num, s.followers_num) as followers_num,
+    if(s.status = 3 or s.status = 4, se.total_liked_num, s.total_liked_num) as total_liked_num,
+    if(s.status = 3 or s.status = 4, se.single_highest_num, s.single_highest_num) as single_highest_num,
+    if(s.status = 3 or s.status = 4, se.sensation_survey, s.sensation_survey) as sensation_survey
+    from s_sensation s
+    left join c_province p on p.cid = s.province_id
+    left join c_city ci on ci.cid = s.city_id
+    left join c_area a on a.cid = s.area_id
+    LEFT join s_sensation_check se on (select sc.id from s_sensation_check sc
+    where sc.sensation_id = s.id ORDER BY sc.id DESC limit 1) = se.id
+    where 1=1
+    <include refid="find_sensation_vm_list" />
+    ORDER BY s.id DESC limit #{beginNum, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+  </select>
+
+  <sql id="find_sensation_vm_list" >
+    and s.sensation_status != 3
+    <if test="sensationType != null" >
+      and s.sensation_type = #{sensationType,jdbcType=INTEGER}
+    </if>
+    <if test="status != null and status == 1" >
+      and (s.status = 3 or s.status = 4)
+    </if>
+    <if test="nickName != null">
+      and instr(s.nick_name, #{nickName, jdbcType=INTEGER})
+    </if>
+    <if test="contentType != null" >
+      and s.content_type = #{contentType,jdbcType=INTEGER}
+    </if>
+    /*粉丝数量:1、10W以内、2-10W-30W、3-30W-100W、4-100W-300W、5-300W-500W、6-500W以上*/
+    <if test="followersType != null" >
+      <if test="followersType == 1" >
+        and s.followers_num &lt; 100000
+      </if>
+      <if test="followersType == 2" >
+        and s.followers_num &gt;= 100000 and s.followers_num &lt; 300000
+      </if>
+      <if test="followersType == 3" >
+        and s.followers_num &gt;= 300000 and s.followers_num &lt; 1000000
+      </if>
+      <if test="followersType == 4" >
+        and s.followers_num &gt;= 1000000 and s.followers_num &lt; 3000000
+      </if>
+      <if test="followersType == 5" >
+        and s.followers_num &gt;= 3000000 and s.followers_num &lt; 5000000
+      </if>
+      <if test="followersType == 6" >
+        and s.followers_num &gt;= 5000000
+      </if>
+    </if>
+    <if test="followersSpreadType != null" >
+      and s.followers_spread_type = #{followersSpreadType,jdbcType=INTEGER}
+    </if>
+    /*获赞总量：1、10W以内、2-10W-30W、3-30W-100W、4-100W-300W、5-300W-500W、6-500W以上*/
+    <if test="totalLikedType != null" >
+      <if test="totalLikedType == 1" >
+        and s.total_liked_num &lt; 100000
+      </if>
+      <if test="totalLikedType == 2" >
+        and s.total_liked_num &gt;= 100000 and s.total_liked_num &lt; 300000
+      </if>
+      <if test="totalLikedType == 3" >
+        and s.total_liked_num &gt;= 300000 and s.total_liked_num &lt; 1000000
+      </if>
+      <if test="totalLikedType == 4" >
+        and s.total_liked_num &gt;= 1000000 and s.total_liked_num &lt; 3000000
+      </if>
+      <if test="totalLikedType == 5" >
+        and s.total_liked_num &gt;= 3000000 and s.total_liked_num &lt; 5000000
+      </if>
+      <if test="totalLikedType == 6" >
+        and s.total_liked_num &gt;= 5000000
+      </if>
+    </if>
+    <if test="provinceId != null" >
+      and s.province_id = #{provinceId,jdbcType=BIGINT}
+    </if>
+    <if test="extensionType != null">
+      and instr(s.extension_type, #{extensionType, jdbcType=INTEGER})
+    </if>
+  </sql>
+
+  <select id="getSensationVmNum" resultType="java.lang.Integer">
+    select
+    count(s.id)
+    from s_sensation s
+    where 1=1
+    <include refid="find_sensation_vm_list" />
+  </select>
+
+  <update id="updateStatus">
+    update s_sensation
+    set sensation_status = #{status,jdbcType=INTEGER},
+    modify_date = #{date,jdbcType=TIMESTAMP},
+    modify_sys_user = #{userId,jdbcType=BIGINT}
+    where id in(${sensationsIds})
+  </update>
+
+  <update id="plusBalancePrice" >
+    update s_sensation
+    set
+    balance_price = balance_price + #{balancePrice,jdbcType=DOUBLE}
+    where id = #{sensationId,jdbcType=BIGINT}
+  </update>
+
+  <update id="reduceBalancePrice" >
+    update s_sensation
+    set
+    balance_price = round(balance_price - #{balancePrice,jdbcType=DOUBLE}, 2)
+    where id = #{sensationId,jdbcType=BIGINT}
+    <if test="status == 1" >
+      and balance_price >= #{balancePrice,jdbcType=DOUBLE}
+    </if>
+  </update>
+
+  <update id="updateRelationId" >
+    update s_sensation
+    set
+    relation_id = #{relationId,jdbcType=BIGINT},
+    account_name = #{accountName,jdbcType=VARCHAR}
+    where id = #{sensationId,jdbcType=BIGINT}
+    and relation_id is null
+  </update>
+
+  <select id="getSensationIdByRelationId" resultType="java.lang.Long">
+    select
+    id
+    from s_sensation
+    where relation_id = #{relationId,jdbcType=BIGINT}
+  </select>
+
+  <update id="plusEstimatedRevenuePrice" >
+    update s_sensation
+    set
+    estimated_revenue_price = estimated_revenue_price + #{estimatedRevenuePrice,jdbcType=DOUBLE}
+    where id = #{sensationId,jdbcType=BIGINT}
+  </update>
+
+  <update id="reduceEstimatedRevenuePrice" >
+    update s_sensation
+    set
+    estimated_revenue_price = round(estimated_revenue_price - #{estimatedRevenuePrice,jdbcType=DOUBLE}, 2)
+    where id = #{sensationId,jdbcType=BIGINT} and estimated_revenue_price >= #{estimatedRevenuePrice,jdbcType=DOUBLE}
+  </update>
+</mapper>
